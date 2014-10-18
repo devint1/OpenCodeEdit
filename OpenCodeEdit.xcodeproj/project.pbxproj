@@ -1,0 +1,704 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E35921D919E9AEDC00FFCC05 /* ChromiumTabs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E35921D019E9AEB800FFCC05 /* ChromiumTabs.framework */; };
+		E35921DA19E9AEDC00FFCC05 /* ChromiumTabs.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E35921D019E9AEB800FFCC05 /* ChromiumTabs.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E35921E019E9AEEE00FFCC05 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E35921DF19E9AEEE00FFCC05 /* Cocoa.framework */; };
+		E35921E519E9AFA900FFCC05 /* BrowserWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = E35921E119E9AFA900FFCC05 /* BrowserWindow.xib */; };
+		E35921E619E9AFA900FFCC05 /* TabContents.xib in Resources */ = {isa = PBXBuildFile; fileRef = E35921E219E9AFA900FFCC05 /* TabContents.xib */; };
+		E35921E719E9AFA900FFCC05 /* TabView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E35921E319E9AFA900FFCC05 /* TabView.xib */; };
+		E3B9D81E19EB209A00691B10 /* Scintilla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E35921D819E9AEC600FFCC05 /* Scintilla.framework */; };
+		E3B9D81F19EB209A00691B10 /* Scintilla.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E35921D819E9AEC600FFCC05 /* Scintilla.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E3F876C319F1E59E00AD747C /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = E3F876B819F1E59E00AD747C /* AppDelegate.mm */; };
+		E3F876C419F1E59E00AD747C /* CodeDocument.mm in Sources */ = {isa = PBXBuildFile; fileRef = E3F876BA19F1E59E00AD747C /* CodeDocument.mm */; };
+		E3F876C519F1E59E00AD747C /* CodeStyleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E3F876BC19F1E59E00AD747C /* CodeStyleElement.m */; };
+		E3F876C619F1E59E00AD747C /* CodeStyler.mm in Sources */ = {isa = PBXBuildFile; fileRef = E3F876BE19F1E59E00AD747C /* CodeStyler.mm */; };
+		E3F876C819F1E59E00AD747C /* PreferencesController.mm in Sources */ = {isa = PBXBuildFile; fileRef = E3F876C119F1E59E00AD747C /* PreferencesController.mm */; };
+		E3F876D719F1E5AC00AD747C /* copy.png in Resources */ = {isa = PBXBuildFile; fileRef = E3F876C919F1E5AC00AD747C /* copy.png */; };
+		E3F876D819F1E5AC00AD747C /* cut.png in Resources */ = {isa = PBXBuildFile; fileRef = E3F876CA19F1E5AC00AD747C /* cut.png */; };
+		E3F876D919F1E5AC00AD747C /* decreaseIndent.png in Resources */ = {isa = PBXBuildFile; fileRef = E3F876CB19F1E5AC00AD747C /* decreaseIndent.png */; };
+		E3F876DA19F1E5AC00AD747C /* increaseIndent.png in Resources */ = {isa = PBXBuildFile; fileRef = E3F876CC19F1E5AC00AD747C /* increaseIndent.png */; };
+		E3F876DB19F1E5AC00AD747C /* new.png in Resources */ = {isa = PBXBuildFile; fileRef = E3F876CD19F1E5AC00AD747C /* new.png */; };
+		E3F876DC19F1E5AC00AD747C /* open.png in Resources */ = {isa = PBXBuildFile; fileRef = E3F876CE19F1E5AC00AD747C /* open.png */; };
+		E3F876DD19F1E5AC00AD747C /* paragraph.png in Resources */ = {isa = PBXBuildFile; fileRef = E3F876CF19F1E5AC00AD747C /* paragraph.png */; };
+		E3F876DE19F1E5AC00AD747C /* paste.png in Resources */ = {isa = PBXBuildFile; fileRef = E3F876D019F1E5AC00AD747C /* paste.png */; };
+		E3F876DF19F1E5AC00AD747C /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3F876D119F1E5AC00AD747C /* Preferences.xib */; };
+		E3F876E019F1E5AC00AD747C /* redo.png in Resources */ = {isa = PBXBuildFile; fileRef = E3F876D219F1E5AC00AD747C /* redo.png */; };
+		E3F876E119F1E5AC00AD747C /* save.png in Resources */ = {isa = PBXBuildFile; fileRef = E3F876D319F1E5AC00AD747C /* save.png */; };
+		E3F876E219F1E5AC00AD747C /* saveall.png in Resources */ = {isa = PBXBuildFile; fileRef = E3F876D419F1E5AC00AD747C /* saveall.png */; };
+		E3F876E319F1E5AC00AD747C /* Toolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3F876D519F1E5AC00AD747C /* Toolbar.xib */; };
+		E3F876E419F1E5AC00AD747C /* undo.png in Resources */ = {isa = PBXBuildFile; fileRef = E3F876D619F1E5AC00AD747C /* undo.png */; };
+		E3F876E819F1E5C500AD747C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E3F876E719F1E5C500AD747C /* main.m */; };
+		E3F876EE19F1E65800AD747C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3F876ED19F1E65800AD747C /* Info.plist */; };
+		E3F876F319F1E6B400AD747C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3F876F219F1E6B400AD747C /* Foundation.framework */; };
+		E3F876F519F1E77000AD747C /* CodeEditTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E3F876F419F1E77000AD747C /* CodeEditTests.m */; };
+		E3F876F819F1E7DF00AD747C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3F876F619F1E7DF00AD747C /* MainMenu.xib */; };
+		E3F876FB19F1E82500AD747C /* themes.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3F876FA19F1E82500AD747C /* themes.plist */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E31B6E9F19E9AE1100FAF947 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E31B6E8319E9AE1000FAF947 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E31B6E8A19E9AE1000FAF947;
+			remoteInfo = CodeEdit;
+		};
+		E35921CF19E9AEB800FFCC05 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E35921CA19E9AEB800FFCC05 /* chromium-tabs.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3A3ED9831225E27E009E2908;
+			remoteInfo = ChromiumTabs;
+		};
+		E35921D119E9AEB800FFCC05 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E35921CA19E9AEB800FFCC05 /* chromium-tabs.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8D1107320486CEB800E47090;
+			remoteInfo = "Chromium Tabs";
+		};
+		E35921D719E9AEC600FFCC05 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E35921D319E9AEC600FFCC05 /* ScintillaFramework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteInfo = Scintilla;
+		};
+		E35921DB19E9AEDC00FFCC05 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E35921CA19E9AEB800FFCC05 /* chromium-tabs.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 3A3ED9821225E27E009E2908;
+			remoteInfo = ChromiumTabs;
+		};
+		E3B9D82019EB209A00691B10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E35921D319E9AEC600FFCC05 /* ScintillaFramework.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = Scintilla;
+		};
+		E3F876F019F1E69500AD747C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E31B6E8319E9AE1000FAF947 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E31B6E8A19E9AE1000FAF947;
+			remoteInfo = OpenCodeEdit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E35921DD19E9AEDC00FFCC05 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E3B9D81F19EB209A00691B10 /* Scintilla.framework in Embed Frameworks */,
+				E35921DA19E9AEDC00FFCC05 /* ChromiumTabs.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		E31B6E8B19E9AE1100FAF947 /* OpenCodeEdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenCodeEdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E31B6E9E19E9AE1100FAF947 /* OpenCodeEditTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenCodeEditTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E35921CA19E9AEB800FFCC05 /* chromium-tabs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "chromium-tabs.xcodeproj"; path = "chromium-tabs/chromium-tabs.xcodeproj"; sourceTree = "<group>"; };
+		E35921D319E9AEC600FFCC05 /* ScintillaFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ScintillaFramework.xcodeproj; path = scintilla/cocoa/ScintillaFramework/ScintillaFramework.xcodeproj; sourceTree = "<group>"; };
+		E35921DF19E9AEEE00FFCC05 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		E35921E119E9AFA900FFCC05 /* BrowserWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BrowserWindow.xib; path = "chromium-tabs/resources/BrowserWindow.xib"; sourceTree = SOURCE_ROOT; };
+		E35921E219E9AFA900FFCC05 /* TabContents.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TabContents.xib; path = "chromium-tabs/resources/TabContents.xib"; sourceTree = SOURCE_ROOT; };
+		E35921E319E9AFA900FFCC05 /* TabView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TabView.xib; path = "chromium-tabs/resources/TabView.xib"; sourceTree = SOURCE_ROOT; };
+		E3F876B719F1E59E00AD747C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = OpenCodeEdit/src/AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		E3F876B819F1E59E00AD747C /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = OpenCodeEdit/src/AppDelegate.mm; sourceTree = SOURCE_ROOT; };
+		E3F876B919F1E59E00AD747C /* CodeDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CodeDocument.h; path = OpenCodeEdit/src/CodeDocument.h; sourceTree = SOURCE_ROOT; };
+		E3F876BA19F1E59E00AD747C /* CodeDocument.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CodeDocument.mm; path = OpenCodeEdit/src/CodeDocument.mm; sourceTree = SOURCE_ROOT; };
+		E3F876BB19F1E59E00AD747C /* CodeStyleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CodeStyleElement.h; path = OpenCodeEdit/src/CodeStyleElement.h; sourceTree = SOURCE_ROOT; };
+		E3F876BC19F1E59E00AD747C /* CodeStyleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CodeStyleElement.m; path = OpenCodeEdit/src/CodeStyleElement.m; sourceTree = SOURCE_ROOT; };
+		E3F876BD19F1E59E00AD747C /* CodeStyler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CodeStyler.h; path = OpenCodeEdit/src/CodeStyler.h; sourceTree = SOURCE_ROOT; };
+		E3F876BE19F1E59E00AD747C /* CodeStyler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CodeStyler.mm; path = OpenCodeEdit/src/CodeStyler.mm; sourceTree = SOURCE_ROOT; };
+		E3F876C019F1E59E00AD747C /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesController.h; path = OpenCodeEdit/src/PreferencesController.h; sourceTree = SOURCE_ROOT; };
+		E3F876C119F1E59E00AD747C /* PreferencesController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = PreferencesController.mm; path = OpenCodeEdit/src/PreferencesController.mm; sourceTree = SOURCE_ROOT; };
+		E3F876C219F1E59E00AD747C /* prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = prefix.pch; path = OpenCodeEdit/src/prefix.pch; sourceTree = SOURCE_ROOT; };
+		E3F876C919F1E5AC00AD747C /* copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = copy.png; path = OpenCodeEdit/interface/copy.png; sourceTree = SOURCE_ROOT; };
+		E3F876CA19F1E5AC00AD747C /* cut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cut.png; path = OpenCodeEdit/interface/cut.png; sourceTree = SOURCE_ROOT; };
+		E3F876CB19F1E5AC00AD747C /* decreaseIndent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = decreaseIndent.png; path = OpenCodeEdit/interface/decreaseIndent.png; sourceTree = SOURCE_ROOT; };
+		E3F876CC19F1E5AC00AD747C /* increaseIndent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = increaseIndent.png; path = OpenCodeEdit/interface/increaseIndent.png; sourceTree = SOURCE_ROOT; };
+		E3F876CD19F1E5AC00AD747C /* new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = new.png; path = OpenCodeEdit/interface/new.png; sourceTree = SOURCE_ROOT; };
+		E3F876CE19F1E5AC00AD747C /* open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = open.png; path = OpenCodeEdit/interface/open.png; sourceTree = SOURCE_ROOT; };
+		E3F876CF19F1E5AC00AD747C /* paragraph.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = paragraph.png; path = OpenCodeEdit/interface/paragraph.png; sourceTree = SOURCE_ROOT; };
+		E3F876D019F1E5AC00AD747C /* paste.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = paste.png; path = OpenCodeEdit/interface/paste.png; sourceTree = SOURCE_ROOT; };
+		E3F876D119F1E5AC00AD747C /* Preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Preferences.xib; path = OpenCodeEdit/interface/Preferences.xib; sourceTree = SOURCE_ROOT; };
+		E3F876D219F1E5AC00AD747C /* redo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redo.png; path = OpenCodeEdit/interface/redo.png; sourceTree = SOURCE_ROOT; };
+		E3F876D319F1E5AC00AD747C /* save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = save.png; path = OpenCodeEdit/interface/save.png; sourceTree = SOURCE_ROOT; };
+		E3F876D419F1E5AC00AD747C /* saveall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = saveall.png; path = OpenCodeEdit/interface/saveall.png; sourceTree = SOURCE_ROOT; };
+		E3F876D519F1E5AC00AD747C /* Toolbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Toolbar.xib; path = OpenCodeEdit/interface/Toolbar.xib; sourceTree = SOURCE_ROOT; };
+		E3F876D619F1E5AC00AD747C /* undo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = undo.png; path = OpenCodeEdit/interface/undo.png; sourceTree = SOURCE_ROOT; };
+		E3F876E519F1E5BD00AD747C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = OpenCodeEdit/Info.plist; sourceTree = SOURCE_ROOT; };
+		E3F876E719F1E5C500AD747C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = OpenCodeEdit/src/main.m; sourceTree = SOURCE_ROOT; };
+		E3F876ED19F1E65800AD747C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = OpenCodeEditTests/Info.plist; sourceTree = SOURCE_ROOT; };
+		E3F876F219F1E6B400AD747C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E3F876F419F1E77000AD747C /* CodeEditTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CodeEditTests.m; path = OpenCodeEditTests/CodeEditTests.m; sourceTree = SOURCE_ROOT; };
+		E3F876F719F1E7DF00AD747C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = OpenCodeEdit/Base.lproj/MainMenu.xib; sourceTree = SOURCE_ROOT; };
+		E3F876FA19F1E82500AD747C /* themes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = themes.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E31B6E8819E9AE1000FAF947 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E35921E019E9AEEE00FFCC05 /* Cocoa.framework in Frameworks */,
+				E35921D919E9AEDC00FFCC05 /* ChromiumTabs.framework in Frameworks */,
+				E3B9D81E19EB209A00691B10 /* Scintilla.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E31B6E9B19E9AE1100FAF947 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E3F876F319F1E6B400AD747C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E31B6E8219E9AE1000FAF947 = {
+			isa = PBXGroup;
+			children = (
+				E35921CA19E9AEB800FFCC05 /* chromium-tabs.xcodeproj */,
+				E35921D319E9AEC600FFCC05 /* ScintillaFramework.xcodeproj */,
+				E31B6E8D19E9AE1100FAF947 /* OpenCodeEdit */,
+				E31B6EA119E9AE1100FAF947 /* OpenCodeEditTests */,
+				E35921FE19E9B17D00FFCC05 /* Frameworks */,
+				E31B6E8C19E9AE1100FAF947 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E31B6E8C19E9AE1100FAF947 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E31B6E8B19E9AE1100FAF947 /* OpenCodeEdit.app */,
+				E31B6E9E19E9AE1100FAF947 /* OpenCodeEditTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E31B6E8D19E9AE1100FAF947 /* OpenCodeEdit */ = {
+			isa = PBXGroup;
+			children = (
+				E3F876E919F1E5D400AD747C /* Classes */,
+				E3F876EA19F1E5E400AD747C /* Headers */,
+				E3F876F919F1E82500AD747C /* Data */,
+				E35921FD19E9B16800FFCC05 /* Interface */,
+				E31B6E8E19E9AE1100FAF947 /* Supporting Files */,
+			);
+			name = OpenCodeEdit;
+			path = CodeEdit;
+			sourceTree = "<group>";
+		};
+		E31B6E8E19E9AE1100FAF947 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E3F876E519F1E5BD00AD747C /* Info.plist */,
+				E3F876E719F1E5C500AD747C /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E31B6EA119E9AE1100FAF947 /* OpenCodeEditTests */ = {
+			isa = PBXGroup;
+			children = (
+				E3F876F419F1E77000AD747C /* CodeEditTests.m */,
+				E31B6EA219E9AE1100FAF947 /* Supporting Files */,
+			);
+			name = OpenCodeEditTests;
+			path = CodeEditTests;
+			sourceTree = "<group>";
+		};
+		E31B6EA219E9AE1100FAF947 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E3F876ED19F1E65800AD747C /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E35921CB19E9AEB800FFCC05 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E35921D019E9AEB800FFCC05 /* ChromiumTabs.framework */,
+				E35921D219E9AEB800FFCC05 /* Chromium Tabs.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E35921D419E9AEC600FFCC05 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E35921D819E9AEC600FFCC05 /* Scintilla.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E35921FD19E9B16800FFCC05 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				E35921E119E9AFA900FFCC05 /* BrowserWindow.xib */,
+				E35921E219E9AFA900FFCC05 /* TabContents.xib */,
+				E35921E319E9AFA900FFCC05 /* TabView.xib */,
+				E3F876F619F1E7DF00AD747C /* MainMenu.xib */,
+				E3F876C919F1E5AC00AD747C /* copy.png */,
+				E3F876CA19F1E5AC00AD747C /* cut.png */,
+				E3F876CB19F1E5AC00AD747C /* decreaseIndent.png */,
+				E3F876CC19F1E5AC00AD747C /* increaseIndent.png */,
+				E3F876CD19F1E5AC00AD747C /* new.png */,
+				E3F876CE19F1E5AC00AD747C /* open.png */,
+				E3F876CF19F1E5AC00AD747C /* paragraph.png */,
+				E3F876D019F1E5AC00AD747C /* paste.png */,
+				E3F876D119F1E5AC00AD747C /* Preferences.xib */,
+				E3F876D219F1E5AC00AD747C /* redo.png */,
+				E3F876D319F1E5AC00AD747C /* save.png */,
+				E3F876D419F1E5AC00AD747C /* saveall.png */,
+				E3F876D519F1E5AC00AD747C /* Toolbar.xib */,
+				E3F876D619F1E5AC00AD747C /* undo.png */,
+			);
+			name = Interface;
+			sourceTree = "<group>";
+		};
+		E35921FE19E9B17D00FFCC05 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E3F876F219F1E6B400AD747C /* Foundation.framework */,
+				E35921DF19E9AEEE00FFCC05 /* Cocoa.framework */,
+			);
+			name = Frameworks;
+			path = CodeEdit;
+			sourceTree = "<group>";
+		};
+		E3F876E919F1E5D400AD747C /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				E3F876B819F1E59E00AD747C /* AppDelegate.mm */,
+				E3F876BA19F1E59E00AD747C /* CodeDocument.mm */,
+				E3F876BC19F1E59E00AD747C /* CodeStyleElement.m */,
+				E3F876BE19F1E59E00AD747C /* CodeStyler.mm */,
+				E3F876C119F1E59E00AD747C /* PreferencesController.mm */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		E3F876EA19F1E5E400AD747C /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				E3F876B719F1E59E00AD747C /* AppDelegate.h */,
+				E3F876B919F1E59E00AD747C /* CodeDocument.h */,
+				E3F876BB19F1E59E00AD747C /* CodeStyleElement.h */,
+				E3F876BD19F1E59E00AD747C /* CodeStyler.h */,
+				E3F876C019F1E59E00AD747C /* PreferencesController.h */,
+				E3F876C219F1E59E00AD747C /* prefix.pch */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		E3F876F919F1E82500AD747C /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				E3F876FA19F1E82500AD747C /* themes.plist */,
+			);
+			name = Data;
+			path = OpenCodeEdit/data;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E31B6E8A19E9AE1000FAF947 /* OpenCodeEdit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E31B6EA819E9AE1100FAF947 /* Build configuration list for PBXNativeTarget "OpenCodeEdit" */;
+			buildPhases = (
+				E31B6E8719E9AE1000FAF947 /* Sources */,
+				E31B6E8819E9AE1000FAF947 /* Frameworks */,
+				E31B6E8919E9AE1000FAF947 /* Resources */,
+				E35921DD19E9AEDC00FFCC05 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E35921DC19E9AEDC00FFCC05 /* PBXTargetDependency */,
+				E3B9D82119EB209A00691B10 /* PBXTargetDependency */,
+			);
+			name = OpenCodeEdit;
+			productName = CodeEdit;
+			productReference = E31B6E8B19E9AE1100FAF947 /* OpenCodeEdit.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E31B6E9D19E9AE1100FAF947 /* OpenCodeEditTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E31B6EAB19E9AE1100FAF947 /* Build configuration list for PBXNativeTarget "OpenCodeEditTests" */;
+			buildPhases = (
+				E31B6E9A19E9AE1100FAF947 /* Sources */,
+				E31B6E9B19E9AE1100FAF947 /* Frameworks */,
+				E31B6E9C19E9AE1100FAF947 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E31B6EA019E9AE1100FAF947 /* PBXTargetDependency */,
+				E3F876F119F1E69500AD747C /* PBXTargetDependency */,
+			);
+			name = OpenCodeEditTests;
+			productName = CodeEditTests;
+			productReference = E31B6E9E19E9AE1100FAF947 /* OpenCodeEditTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E31B6E8319E9AE1000FAF947 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Devi Tuchsen";
+				TargetAttributes = {
+					E31B6E8A19E9AE1000FAF947 = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+					E31B6E9D19E9AE1100FAF947 = {
+						CreatedOnToolsVersion = 6.0.1;
+						TestTargetID = E31B6E8A19E9AE1000FAF947;
+					};
+				};
+			};
+			buildConfigurationList = E31B6E8619E9AE1000FAF947 /* Build configuration list for PBXProject "OpenCodeEdit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E31B6E8219E9AE1000FAF947;
+			productRefGroup = E31B6E8C19E9AE1100FAF947 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = E35921CB19E9AEB800FFCC05 /* Products */;
+					ProjectRef = E35921CA19E9AEB800FFCC05 /* chromium-tabs.xcodeproj */;
+				},
+				{
+					ProductGroup = E35921D419E9AEC600FFCC05 /* Products */;
+					ProjectRef = E35921D319E9AEC600FFCC05 /* ScintillaFramework.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				E31B6E8A19E9AE1000FAF947 /* OpenCodeEdit */,
+				E31B6E9D19E9AE1100FAF947 /* OpenCodeEditTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		E35921D019E9AEB800FFCC05 /* ChromiumTabs.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ChromiumTabs.framework;
+			remoteRef = E35921CF19E9AEB800FFCC05 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E35921D219E9AEB800FFCC05 /* Chromium Tabs.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "Chromium Tabs.app";
+			remoteRef = E35921D119E9AEB800FFCC05 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E35921D819E9AEC600FFCC05 /* Scintilla.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Scintilla.framework;
+			remoteRef = E35921D719E9AEC600FFCC05 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E31B6E8919E9AE1000FAF947 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E3F876FB19F1E82500AD747C /* themes.plist in Resources */,
+				E35921E519E9AFA900FFCC05 /* BrowserWindow.xib in Resources */,
+				E3F876DE19F1E5AC00AD747C /* paste.png in Resources */,
+				E3F876F819F1E7DF00AD747C /* MainMenu.xib in Resources */,
+				E3F876DA19F1E5AC00AD747C /* increaseIndent.png in Resources */,
+				E3F876DC19F1E5AC00AD747C /* open.png in Resources */,
+				E35921E619E9AFA900FFCC05 /* TabContents.xib in Resources */,
+				E3F876E219F1E5AC00AD747C /* saveall.png in Resources */,
+				E3F876E319F1E5AC00AD747C /* Toolbar.xib in Resources */,
+				E3F876E019F1E5AC00AD747C /* redo.png in Resources */,
+				E3F876EE19F1E65800AD747C /* Info.plist in Resources */,
+				E3F876D719F1E5AC00AD747C /* copy.png in Resources */,
+				E3F876D919F1E5AC00AD747C /* decreaseIndent.png in Resources */,
+				E3F876DF19F1E5AC00AD747C /* Preferences.xib in Resources */,
+				E3F876DB19F1E5AC00AD747C /* new.png in Resources */,
+				E35921E719E9AFA900FFCC05 /* TabView.xib in Resources */,
+				E3F876DD19F1E5AC00AD747C /* paragraph.png in Resources */,
+				E3F876E119F1E5AC00AD747C /* save.png in Resources */,
+				E3F876E419F1E5AC00AD747C /* undo.png in Resources */,
+				E3F876D819F1E5AC00AD747C /* cut.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E31B6E9C19E9AE1100FAF947 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E31B6E8719E9AE1000FAF947 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E3F876C619F1E59E00AD747C /* CodeStyler.mm in Sources */,
+				E3F876C519F1E59E00AD747C /* CodeStyleElement.m in Sources */,
+				E3F876C419F1E59E00AD747C /* CodeDocument.mm in Sources */,
+				E3F876C319F1E59E00AD747C /* AppDelegate.mm in Sources */,
+				E3F876E819F1E5C500AD747C /* main.m in Sources */,
+				E3F876C819F1E59E00AD747C /* PreferencesController.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E31B6E9A19E9AE1100FAF947 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E3F876F519F1E77000AD747C /* CodeEditTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E31B6EA019E9AE1100FAF947 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E31B6E8A19E9AE1000FAF947 /* OpenCodeEdit */;
+			targetProxy = E31B6E9F19E9AE1100FAF947 /* PBXContainerItemProxy */;
+		};
+		E35921DC19E9AEDC00FFCC05 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ChromiumTabs;
+			targetProxy = E35921DB19E9AEDC00FFCC05 /* PBXContainerItemProxy */;
+		};
+		E3B9D82119EB209A00691B10 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Scintilla;
+			targetProxy = E3B9D82019EB209A00691B10 /* PBXContainerItemProxy */;
+		};
+		E3F876F119F1E69500AD747C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E31B6E8A19E9AE1000FAF947 /* OpenCodeEdit */;
+			targetProxy = E3F876F019F1E69500AD747C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E3F876F619F1E7DF00AD747C /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E3F876F719F1E7DF00AD747C /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E31B6EA619E9AE1100FAF947 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		E31B6EA719E9AE1100FAF947 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		E31B6EA919E9AE1100FAF947 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = OpenCodeEdit/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = OpenCodeEdit;
+			};
+			name = Debug;
+		};
+		E31B6EAA19E9AE1100FAF947 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = OpenCodeEdit/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = OpenCodeEdit;
+			};
+			name = Release;
+		};
+		E31B6EAC19E9AE1100FAF947 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = OpenCodeEditTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = OpenCodeEditTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenCodeEdit.app/Contents/MacOS/OpenCodeEdit";
+			};
+			name = Debug;
+		};
+		E31B6EAD19E9AE1100FAF947 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				INFOPLIST_FILE = OpenCodeEditTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = OpenCodeEditTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenCodeEdit.app/Contents/MacOS/OpenCodeEdit";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E31B6E8619E9AE1000FAF947 /* Build configuration list for PBXProject "OpenCodeEdit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E31B6EA619E9AE1100FAF947 /* Debug */,
+				E31B6EA719E9AE1100FAF947 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E31B6EA819E9AE1100FAF947 /* Build configuration list for PBXNativeTarget "OpenCodeEdit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E31B6EA919E9AE1100FAF947 /* Debug */,
+				E31B6EAA19E9AE1100FAF947 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E31B6EAB19E9AE1100FAF947 /* Build configuration list for PBXNativeTarget "OpenCodeEditTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E31B6EAC19E9AE1100FAF947 /* Debug */,
+				E31B6EAD19E9AE1100FAF947 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E31B6E8319E9AE1000FAF947 /* Project object */;
+}

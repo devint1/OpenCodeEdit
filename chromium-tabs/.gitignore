@@ -1,0 +1,17 @@
+/build/
+/chromium/.gclient
+/chromium/.gclient_entries
+/chromium/README-archive
+/chromium/src/
+*xcodeproj/project.xcworkspace
+*xcodeproj/xcuserdata
+/examples/simple-app/test.*
+*CTTab*Object.*
+
+.DS_Store
+
+chromium-tabs.xcodeproj/KOed.mode1v3
+
+chromium-tabs.xcodeproj/KOed.pbxuser
+
+chromium-tabs.tmproj
