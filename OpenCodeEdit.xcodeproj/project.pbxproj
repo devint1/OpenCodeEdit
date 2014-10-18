@@ -111,9 +111,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0388616219F2D99200D9E01A /* Languages.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Languages.h; sourceTree = SOURCE_ROOT; };
 		E31B6E8B19E9AE1100FAF947 /* OpenCodeEdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenCodeEdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E31B6E9E19E9AE1100FAF947 /* OpenCodeEditTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenCodeEditTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3356EBE19F2F97200277BE7 /* Languages.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Languages.h; path = OpenCodeEdit/src/Languages.h; sourceTree = SOURCE_ROOT; };
 		E33EFF1919F2CFFF000F4605 /* ScintillaManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScintillaManager.h; path = OpenCodeEdit/src/ScintillaManager.h; sourceTree = SOURCE_ROOT; };
 		E33EFF1A19F2CFFF000F4605 /* ScintillaManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ScintillaManager.mm; path = OpenCodeEdit/src/ScintillaManager.mm; sourceTree = SOURCE_ROOT; };
 		E35921CA19E9AEB800FFCC05 /* chromium-tabs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "chromium-tabs.xcodeproj"; path = "chromium-tabs/chromium-tabs.xcodeproj"; sourceTree = "<group>"; };
@@ -311,7 +311,7 @@
 				E3F876B919F1E59E00AD747C /* CodeDocument.h */,
 				E3F876BB19F1E59E00AD747C /* CodeStyleElement.h */,
 				E3F876BD19F1E59E00AD747C /* CodeStyler.h */,
-				0388616219F2D99200D9E01A /* Languages.h */,
+				E3356EBE19F2F97200277BE7 /* Languages.h */,
 				E3F876C019F1E59E00AD747C /* PreferencesController.h */,
 				E33EFF1919F2CFFF000F4605 /* ScintillaManager.h */,
 				E3F876C219F1E59E00AD747C /* prefix.pch */,
