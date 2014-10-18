@@ -1,18 +1,22 @@
 #import <ChromiumTabs/ChromiumTabs.h>
 #import <Scintilla/ScintillaView.h>
+#import "ScintillaManager.h"
 
-// This class represents a tab. In this example application a tab contains a
-// simple scrollable text area.
-@interface CodeDocument : CTTabContents <ScintillaNotificationProtocol> {
+@class ScintillaManager;
+
+@interface CodeDocument : CTTabContents {
     NSTextView* tv;
-    ScintillaView *sv;
-	BOOL loaded;
 	BOOL savePromptOpen;
 	int currentLine;
     NSButton *eolButton;
+    ScintillaManager *sm;
 }
 
--(void)setLoaded:(BOOL)isLoaded;
+@property (readwrite) BOOL loaded;
+@property (readwrite) NSInteger language;
+@property (readonly) ScintillaView *sv;
+
 -(void)applyStyle;
 
 @end
+

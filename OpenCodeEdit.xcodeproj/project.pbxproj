@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E33EFF1B19F2CFFF000F4605 /* ScintillaManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = E33EFF1A19F2CFFF000F4605 /* ScintillaManager.mm */; };
 		E35921D919E9AEDC00FFCC05 /* ChromiumTabs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E35921D019E9AEB800FFCC05 /* ChromiumTabs.framework */; };
 		E35921DA19E9AEDC00FFCC05 /* ChromiumTabs.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E35921D019E9AEB800FFCC05 /* ChromiumTabs.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E35921E019E9AEEE00FFCC05 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E35921DF19E9AEEE00FFCC05 /* Cocoa.framework */; };
@@ -110,8 +111,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0388616219F2D99200D9E01A /* Languages.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Languages.h; sourceTree = SOURCE_ROOT; };
 		E31B6E8B19E9AE1100FAF947 /* OpenCodeEdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenCodeEdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E31B6E9E19E9AE1100FAF947 /* OpenCodeEditTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenCodeEditTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E33EFF1919F2CFFF000F4605 /* ScintillaManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScintillaManager.h; path = OpenCodeEdit/src/ScintillaManager.h; sourceTree = SOURCE_ROOT; };
+		E33EFF1A19F2CFFF000F4605 /* ScintillaManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ScintillaManager.mm; path = OpenCodeEdit/src/ScintillaManager.mm; sourceTree = SOURCE_ROOT; };
 		E35921CA19E9AEB800FFCC05 /* chromium-tabs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "chromium-tabs.xcodeproj"; path = "chromium-tabs/chromium-tabs.xcodeproj"; sourceTree = "<group>"; };
 		E35921D319E9AEC600FFCC05 /* ScintillaFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ScintillaFramework.xcodeproj; path = scintilla/cocoa/ScintillaFramework/ScintillaFramework.xcodeproj; sourceTree = "<group>"; };
 		E35921DF19E9AEEE00FFCC05 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -295,6 +299,7 @@
 				E3F876BC19F1E59E00AD747C /* CodeStyleElement.m */,
 				E3F876BE19F1E59E00AD747C /* CodeStyler.mm */,
 				E3F876C119F1E59E00AD747C /* PreferencesController.mm */,
+				E33EFF1A19F2CFFF000F4605 /* ScintillaManager.mm */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -306,7 +311,9 @@
 				E3F876B919F1E59E00AD747C /* CodeDocument.h */,
 				E3F876BB19F1E59E00AD747C /* CodeStyleElement.h */,
 				E3F876BD19F1E59E00AD747C /* CodeStyler.h */,
+				0388616219F2D99200D9E01A /* Languages.h */,
 				E3F876C019F1E59E00AD747C /* PreferencesController.h */,
+				E33EFF1919F2CFFF000F4605 /* ScintillaManager.h */,
 				E3F876C219F1E59E00AD747C /* prefix.pch */,
 			);
 			name = Headers;
@@ -477,6 +484,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3F876C619F1E59E00AD747C /* CodeStyler.mm in Sources */,
+				E33EFF1B19F2CFFF000F4605 /* ScintillaManager.mm in Sources */,
 				E3F876C519F1E59E00AD747C /* CodeStyleElement.m in Sources */,
 				E3F876C419F1E59E00AD747C /* CodeDocument.mm in Sources */,
 				E3F876C319F1E59E00AD747C /* AppDelegate.mm in Sources */,

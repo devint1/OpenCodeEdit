@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1090</int>
-		<string key="IBDocument.SystemVersion">13F34</string>
+		<string key="IBDocument.SystemVersion">13E28</string>
 		<string key="IBDocument.InterfaceBuilderVersion">6245</string>
 		<string key="IBDocument.AppKitVersion">1265.21</string>
 		<string key="IBDocument.HIToolboxVersion">698.00</string>
@@ -1229,6 +1229,7 @@
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="35465992"/>
 									<reference key="NSMixedImage" ref="502551668"/>
+									<int key="NSTag">1</int>
 								</object>
 								<object class="NSMenuItem" id="469972148">
 									<reference key="NSMenu" ref="348205234"/>
@@ -1248,7 +1249,7 @@
 									<int key="NSState">1</int>
 									<reference key="NSOnImage" ref="35465992"/>
 									<reference key="NSMixedImage" ref="502551668"/>
-									<int key="NSTag">3</int>
+									<int key="NSTag">2</int>
 								</object>
 								<object class="NSMenuItem" id="720821949">
 									<reference key="NSMenu" ref="348205234"/>
@@ -1257,7 +1258,7 @@
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="35465992"/>
 									<reference key="NSMixedImage" ref="502551668"/>
-									<int key="NSTag">38</int>
+									<int key="NSTag">29</int>
 								</object>
 								<object class="NSMenuItem" id="421220505">
 									<reference key="NSMenu" ref="348205234"/>
@@ -1266,7 +1267,7 @@
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="35465992"/>
 									<reference key="NSMixedImage" ref="502551668"/>
-									<int key="NSTag">4</int>
+									<int key="NSTag">47</int>
 								</object>
 								<object class="NSMenuItem" id="747441181">
 									<reference key="NSMenu" ref="348205234"/>
@@ -1275,7 +1276,7 @@
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="35465992"/>
 									<reference key="NSMixedImage" ref="502551668"/>
-									<int key="NSTag">3</int>
+									<int key="NSTag">50</int>
 								</object>
 							</array>
 						</object>
@@ -2368,35 +2369,35 @@ y7bMNcy1zTXNtc42zrbPN8+40DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo2WzZ8dp2
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">setLanguage:</string>
+						<string key="label">changeLanguage:</string>
 						<reference key="source" ref="1014"/>
 						<reference key="destination" ref="791560552"/>
 					</object>
-					<int key="connectionID">570</int>
+					<int key="connectionID">578</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">setLanguage:</string>
+						<string key="label">changeLanguage:</string>
 						<reference key="source" ref="1014"/>
 						<reference key="destination" ref="720821949"/>
 					</object>
-					<int key="connectionID">571</int>
+					<int key="connectionID">579</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">setLanguage:</string>
+						<string key="label">changeLanguage:</string>
 						<reference key="source" ref="1014"/>
 						<reference key="destination" ref="421220505"/>
 					</object>
-					<int key="connectionID">572</int>
+					<int key="connectionID">580</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">setLanguage:</string>
+						<string key="label">changeLanguage:</string>
 						<reference key="source" ref="1014"/>
 						<reference key="destination" ref="747441181"/>
 					</object>
-					<int key="connectionID">573</int>
+					<int key="connectionID">581</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -3719,7 +3720,7 @@ y7bMNcy1zTXNtc42zrbPN8+40DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo2WzZ8dp2
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">577</int>
+			<int key="maxID">581</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3925,22 +3926,22 @@ y7bMNcy1zTXNtc42zrbPN8+40DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo2WzZ8dp2
 				<object class="IBPartialClassDescription">
 					<string key="className">CodeDocument</string>
 					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="changeLanguage:">id</string>
 						<string key="decreaseIndent:">id</string>
 						<string key="increaseIndent:">id</string>
-						<string key="setLanguage:">id</string>
 						<string key="toggleEOL:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="changeLanguage:">
+							<string key="name">changeLanguage:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="decreaseIndent:">
 							<string key="name">decreaseIndent:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="increaseIndent:">
 							<string key="name">increaseIndent:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="setLanguage:">
-							<string key="name">setLanguage:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="toggleEOL:">
