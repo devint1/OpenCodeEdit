@@ -115,6 +115,7 @@
 
 /* Begin PBXFileReference section */
 		0370A6BD19F4478600B8677C /* languages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = languages.plist; sourceTree = "<group>"; };
+		03F60C9119F4810000F90A84 /* UserDefaultsKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserDefaultsKeys.h; path = OpenCodeEdit/src/UserDefaultsKeys.h; sourceTree = SOURCE_ROOT; };
 		E31B6E8B19E9AE1100FAF947 /* OpenCodeEdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenCodeEdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E31B6E9E19E9AE1100FAF947 /* OpenCodeEditTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenCodeEditTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3356EBE19F2F97200277BE7 /* Languages.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Languages.h; path = OpenCodeEdit/src/Languages.h; sourceTree = SOURCE_ROOT; };
@@ -326,6 +327,7 @@
 				E3356EBF19F2FCDB00277BE7 /* FindBarController.h */,
 				E3356EC419F30E9C00277BE7 /* FindBarView.h */,
 				E3356EBE19F2F97200277BE7 /* Languages.h */,
+				03F60C9119F4810000F90A84 /* UserDefaultsKeys.h */,
 				E3F876C019F1E59E00AD747C /* PreferencesController.h */,
 				E33EFF1919F2CFFF000F4605 /* ScintillaManager.h */,
 				E3F876C219F1E59E00AD747C /* prefix.pch */,

@@ -4,6 +4,7 @@
 #import "CodeStyler.h"
 #import "FindBarController.h"
 #import "FindBarView.h"
+#import "UserDefaultsKeys.h"
 
 @implementation CodeDocument
 
@@ -66,7 +67,7 @@
 }
 
 -(void)applyStyle {
-    NSString *style = [[NSUserDefaults standardUserDefaults] objectForKey:@"style"];
+    NSString *style = [[NSUserDefaults standardUserDefaults] objectForKey:UD_THEME];
     // 20 characters should be more than enough for any lexer module name
     char lexerLanguageBuf[20];
     [_sv message:SCI_GETLEXERLANGUAGE wParam:nil lParam:(sptr_t)lexerLanguageBuf];

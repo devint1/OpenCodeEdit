@@ -11,6 +11,7 @@
 #import "CodeDocument.h"
 #import "CodeStyler.h"
 #import "PreferencesController.h"
+#import "UserDefaultsKeys.h"
 
 @implementation PreferencesController
 
@@ -18,7 +19,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(defaultsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
     NSArray *styleNames = [CodeStyler getStyleNames];
     [_stylePopUp addItemsWithTitles:styleNames];
-    [_stylePopUp selectItemWithTitle:[[NSUserDefaults standardUserDefaults] stringForKey:@"style"]];
+    [_stylePopUp selectItemWithTitle:[[NSUserDefaults standardUserDefaults] stringForKey:UD_THEME]];
 }
 
 - (void)defaultsChanged:(NSNotification *)notification {

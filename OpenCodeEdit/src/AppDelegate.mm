@@ -1,5 +1,6 @@
 #import "AppDelegate.h"
 #import "CodeDocument.h"
+#import "UserDefaultsKeys.h"
 
 #define DEBUG_UTI YES
 
@@ -7,12 +8,20 @@
 
 CTBrowser *browser;
 
--(void)applicationDidFinishLaunching:(NSNotification *)notification {
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	NSDictionary *defaults = [[NSDictionary alloc] init];
-	NSString *defaultStyle = @"Default";
-	[defaults setValue:defaultStyle forKey:@"style"];
-	[userDefaults registerDefaults:defaults];
+static NSDictionary *defaultValues() {
+    static NSDictionary *defaults = nil;
+    if(!defaults) {
+        defaults = [[NSDictionary alloc] initWithObjectsAndKeys:
+                    @"Default", UD_THEME,
+                    nil
+                    ];
+    }
+    return defaults;
+}
+
++(void)initialize {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults registerDefaults:defaultValues()];
 }
 
 - (void)newBrowserWindow {
