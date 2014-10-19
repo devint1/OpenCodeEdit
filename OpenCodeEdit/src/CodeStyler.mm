@@ -91,7 +91,62 @@ static NSDictionary *properties;
 		CodeStyleElement *elem = [self elementForDictionary:style];
 		[styleElements addObject:elem];
 	}
+    [self setSubStyles:themeStyles language:language];
 	return self;
+}
+
+-(void)setSubStyles:(NSDictionary*)themeStyles language:(NSString*)language {
+    if([language isEqualToString:@"hypertext"]) {
+        NSMutableArray *subStyles = [themeStyles objectForKey:@"cpp"];
+        [subStyles addObjectsFromArray:[themeStyles objectForKey:COMMON]];
+        for(int i = 0; i < [subStyles count]; ++i) {
+            NSDictionary *style = [subStyles objectAtIndex:i];
+            CodeStyleElement *elem = [self elementForDictionary:style];
+            CodeStyleElement *subElem1;
+            CodeStyleElement *subElem2;
+            switch (elem.styleId) {
+                case 0: {
+                    elem.styleId = 46;
+                    subElem1 = [self elementForDictionary:style];
+                    subElem2 = [self elementForDictionary:style];
+                    subElem1.styleId = 40;
+                    subElem2.styleId = 41;
+                    break;
+                }
+                case 1:
+                    elem.styleId = 42;
+                    break;
+                case 2:
+                    elem.styleId = 43;
+                    break;
+                case 3:
+                    elem.styleId = 44;
+                    break;
+                case 4:
+                    elem.styleId = 45;
+                    break;
+                case 6:
+                    elem.styleId = 48;
+                    break;
+                case 7:
+                    elem.styleId = 49;
+                    break;
+                case 10:
+                    elem.styleId = 50;
+                    break;
+                case 16:
+                    elem.styleId = 47;
+                    break;
+                default:
+                    continue;
+            }
+            if(subElem1)
+                [styleElements addObject:subElem1];
+            if(subElem2)
+                [styleElements addObject:subElem2];
+            [styleElements addObject:elem];
+        }
+    }
 }
 
 -(void)stylizeScintillaView:(ScintillaView*)sv {

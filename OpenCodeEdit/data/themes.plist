@@ -44,31 +44,124 @@
 			<key>fontName</key>
 			<string>Menlo-Regular</string>
 		</dict>
-		<key>cpp</key>
+		<key>css</key>
 		<array>
 			<dict>
+				<key>bold</key>
+				<true/>
 				<key>styleId</key>
-				<integer>9</integer>
+				<integer>16</integer>
+			</dict>
+			<dict>
+				<key>bold</key>
+				<true/>
+				<key>styleId</key>
+				<integer>13</integer>
 				<key>foregroundColor</key>
 				<dict>
 					<key>red</key>
-					<real>0.51</real>
+					<integer>1</integer>
 					<key>green</key>
-					<real>0.34</real>
+					<integer>0</integer>
 					<key>blue</key>
-					<real>0.11</real>
+					<integer>0</integer>
 				</dict>
 			</dict>
-		</array>
-		<key>common</key>
-		<array>
+			<dict>
+				<key>bold</key>
+				<true/>
+				<key>styleId</key>
+				<integer>14</integer>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<integer>1</integer>
+					<key>green</key>
+					<integer>0</integer>
+					<key>blue</key>
+					<integer>0</integer>
+				</dict>
+			</dict>
 			<dict>
 				<key>styleId</key>
-				<integer>0</integer>
+				<integer>2</integer>
+				<key>bold</key>
+				<false/>
+				<key>italic</key>
+				<true/>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<real>0.5</real>
+					<key>green</key>
+					<integer>0</integer>
+					<key>blue</key>
+					<real>0.5</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>styleId</key>
+				<integer>10</integer>
+				<key>bold</key>
+				<false/>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<real>0.5</real>
+					<key>green</key>
+					<integer>0</integer>
+					<key>blue</key>
+					<real>0.5</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>styleId</key>
+				<integer>8</integer>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<integer>1</integer>
+					<key>green</key>
+					<integer>0</integer>
+					<key>blue</key>
+					<integer>0</integer>
+				</dict>
+			</dict>
+			<dict>
+				<key>styleId</key>
+				<integer>7</integer>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<integer>0</integer>
+					<key>green</key>
+					<integer>0</integer>
+					<key>blue</key>
+					<integer>1</integer>
+				</dict>
+			</dict>
+			<dict>
+				<key>styleId</key>
+				<integer>5</integer>
 			</dict>
 			<dict>
 				<key>styleId</key>
 				<integer>1</integer>
+				<key>bold</key>
+				<true/>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<real>0.5</real>
+					<key>green</key>
+					<integer>0</integer>
+					<key>blue</key>
+					<real>0.5</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>styleId</key>
+				<integer>9</integer>
 				<key>foregroundColor</key>
 				<dict>
 					<key>red</key>
@@ -79,9 +172,40 @@
 					<integer>0</integer>
 				</dict>
 			</dict>
+		</array>
+		<key>cpp</key>
+		<array>
 			<dict>
 				<key>styleId</key>
-				<integer>2</integer>
+				<integer>7</integer>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<integer>1</integer>
+					<key>green</key>
+					<integer>0</integer>
+					<key>blue</key>
+					<integer>0</integer>
+				</dict>
+			</dict>
+			<dict>
+				<key>styleId</key>
+				<integer>5</integer>
+				<key>bold</key>
+				<true/>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<real>0.5</real>
+					<key>green</key>
+					<integer>0</integer>
+					<key>blue</key>
+					<real>0.5</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>styleId</key>
+				<integer>1</integer>
 				<key>foregroundColor</key>
 				<dict>
 					<key>red</key>
@@ -107,6 +231,113 @@
 			</dict>
 			<dict>
 				<key>styleId</key>
+				<integer>2</integer>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<integer>0</integer>
+					<key>green</key>
+					<real>0.5</real>
+					<key>blue</key>
+					<integer>0</integer>
+				</dict>
+			</dict>
+			<dict>
+				<key>styleId</key>
+				<integer>9</integer>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<real>0.51</real>
+					<key>green</key>
+					<real>0.34</real>
+					<key>blue</key>
+					<real>0.11</real>
+				</dict>
+			</dict>
+		</array>
+		<key>hypertext</key>
+		<array>
+			<dict>
+				<key>styleId</key>
+				<integer>26</integer>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<real>0.51</real>
+					<key>green</key>
+					<real>0.34</real>
+					<key>blue</key>
+					<real>0.11</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>styleId</key>
+				<integer>21</integer>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<real>0.51</real>
+					<key>green</key>
+					<real>0.34</real>
+					<key>blue</key>
+					<real>0.11</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>styleId</key>
+				<integer>1</integer>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<integer>0</integer>
+					<key>green</key>
+					<integer>0</integer>
+					<key>blue</key>
+					<integer>1</integer>
+				</dict>
+			</dict>
+			<dict>
+				<key>styleId</key>
+				<integer>3</integer>
+				<key>bold</key>
+				<false/>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<real>0.5</real>
+					<key>green</key>
+					<integer>0</integer>
+					<key>blue</key>
+					<real>0.5</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>styleId</key>
+				<integer>8</integer>
+			</dict>
+			<dict>
+				<key>styleId</key>
+				<integer>9</integer>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<integer>0</integer>
+					<key>green</key>
+					<real>0.5</real>
+					<key>blue</key>
+					<integer>0</integer>
+				</dict>
+			</dict>
+		</array>
+		<key>common</key>
+		<array>
+			<dict>
+				<key>styleId</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>styleId</key>
 				<integer>4</integer>
 				<key>foregroundColor</key>
 				<dict>
@@ -120,35 +351,7 @@
 			</dict>
 			<dict>
 				<key>styleId</key>
-				<integer>5</integer>
-				<key>bold</key>
-				<true/>
-				<key>foregroundColor</key>
-				<dict>
-					<key>red</key>
-					<real>0.5</real>
-					<key>green</key>
-					<integer>0</integer>
-					<key>blue</key>
-					<real>0.5</real>
-				</dict>
-			</dict>
-			<dict>
-				<key>styleId</key>
 				<integer>6</integer>
-				<key>foregroundColor</key>
-				<dict>
-					<key>red</key>
-					<integer>1</integer>
-					<key>green</key>
-					<integer>0</integer>
-					<key>blue</key>
-					<integer>0</integer>
-				</dict>
-			</dict>
-			<dict>
-				<key>styleId</key>
-				<integer>7</integer>
 				<key>foregroundColor</key>
 				<dict>
 					<key>red</key>
@@ -289,27 +492,177 @@
 			<key>fontName</key>
 			<string>Menlo-Regular</string>
 		</dict>
-		<key>cpp</key>
+		<key>css</key>
 		<array>
+			<dict>
+				<key>bold</key>
+				<true/>
+				<key>styleId</key>
+				<integer>16</integer>
+			</dict>
+			<dict>
+				<key>bold</key>
+				<true/>
+				<key>styleId</key>
+				<integer>13</integer>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<real>0.435</real>
+					<key>green</key>
+					<real>0.91</real>
+					<key>blue</key>
+					<real>0.42</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>bold</key>
+				<true/>
+				<key>styleId</key>
+				<integer>14</integer>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<real>0.435</real>
+					<key>green</key>
+					<real>0.91</real>
+					<key>blue</key>
+					<real>0.42</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>styleId</key>
+				<integer>2</integer>
+				<key>bold</key>
+				<false/>
+				<key>italic</key>
+				<true/>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<real>0.87</real>
+					<key>green</key>
+					<real>0.156</real>
+					<key>blue</key>
+					<real>0.4</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>styleId</key>
+				<integer>10</integer>
+				<key>bold</key>
+				<false/>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<real>0.87</real>
+					<key>green</key>
+					<real>0.156</real>
+					<key>blue</key>
+					<real>0.4</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>styleId</key>
+				<integer>8</integer>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<real>0.435</real>
+					<key>green</key>
+					<real>0.91</real>
+					<key>blue</key>
+					<real>0.42</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>styleId</key>
+				<integer>7</integer>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<real>0.44</real>
+					<key>green</key>
+					<real>0.78</real>
+					<key>blue</key>
+					<real>0.89</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>styleId</key>
+				<integer>5</integer>
+			</dict>
+			<dict>
+				<key>styleId</key>
+				<integer>1</integer>
+				<key>bold</key>
+				<true/>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<real>0.87</real>
+					<key>green</key>
+					<real>0.156</real>
+					<key>blue</key>
+					<real>0.4</real>
+				</dict>
+			</dict>
 			<dict>
 				<key>styleId</key>
 				<integer>9</integer>
 				<key>foregroundColor</key>
 				<dict>
 					<key>red</key>
-					<real>0.9</real>
+					<real>0.5</real>
 					<key>green</key>
-					<real>0.73</real>
+					<real>0.5</real>
+					<key>blue</key>
+					<real>0.5</real>
+				</dict>
+			</dict>
+		</array>
+		<key>cpp</key>
+		<array>
+			<dict>
+				<key>styleId</key>
+				<integer>7</integer>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<real>0.435</real>
+					<key>green</key>
+					<real>0.91</real>
 					<key>blue</key>
 					<real>0.42</real>
 				</dict>
 			</dict>
-		</array>
-		<key>common</key>
-		<array>
 			<dict>
 				<key>styleId</key>
-				<integer>0</integer>
+				<integer>5</integer>
+				<key>bold</key>
+				<true/>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<real>0.87</real>
+					<key>green</key>
+					<real>0.156</real>
+					<key>blue</key>
+					<real>0.4</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<real>0.5</real>
+					<key>green</key>
+					<real>0.5</real>
+					<key>blue</key>
+					<real>0.5</real>
+				</dict>
+				<key>styleId</key>
+				<integer>3</integer>
 			</dict>
 			<dict>
 				<key>styleId</key>
@@ -338,6 +691,82 @@
 				<integer>2</integer>
 			</dict>
 			<dict>
+				<key>styleId</key>
+				<integer>9</integer>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<real>0.9</real>
+					<key>green</key>
+					<real>0.73</real>
+					<key>blue</key>
+					<real>0.42</real>
+				</dict>
+			</dict>
+		</array>
+		<key>hypertext</key>
+		<array>
+			<dict>
+				<key>styleId</key>
+				<integer>26</integer>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<real>0.9</real>
+					<key>green</key>
+					<real>0.73</real>
+					<key>blue</key>
+					<real>0.42</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>styleId</key>
+				<integer>1</integer>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<real>0.44</real>
+					<key>green</key>
+					<real>0.78</real>
+					<key>blue</key>
+					<real>0.89</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>styleId</key>
+				<integer>21</integer>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<real>0.9</real>
+					<key>green</key>
+					<real>0.73</real>
+					<key>blue</key>
+					<real>0.42</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>styleId</key>
+				<integer>3</integer>
+				<key>bold</key>
+				<false/>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<real>0.87</real>
+					<key>green</key>
+					<real>0.156</real>
+					<key>blue</key>
+					<real>0.4</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>styleId</key>
+				<integer>8</integer>
+			</dict>
+			<dict>
+				<key>styleId</key>
+				<integer>9</integer>
 				<key>foregroundColor</key>
 				<dict>
 					<key>red</key>
@@ -347,8 +776,13 @@
 					<key>blue</key>
 					<real>0.5</real>
 				</dict>
+			</dict>
+		</array>
+		<key>common</key>
+		<array>
+			<dict>
 				<key>styleId</key>
-				<integer>3</integer>
+				<integer>0</integer>
 			</dict>
 			<dict>
 				<key>styleId</key>
@@ -365,35 +799,7 @@
 			</dict>
 			<dict>
 				<key>styleId</key>
-				<integer>5</integer>
-				<key>bold</key>
-				<true/>
-				<key>foregroundColor</key>
-				<dict>
-					<key>red</key>
-					<real>0.87</real>
-					<key>green</key>
-					<real>0.156</real>
-					<key>blue</key>
-					<real>0.4</real>
-				</dict>
-			</dict>
-			<dict>
-				<key>styleId</key>
 				<integer>6</integer>
-				<key>foregroundColor</key>
-				<dict>
-					<key>red</key>
-					<real>0.435</real>
-					<key>green</key>
-					<real>0.91</real>
-					<key>blue</key>
-					<real>0.42</real>
-				</dict>
-			</dict>
-			<dict>
-				<key>styleId</key>
-				<integer>7</integer>
 				<key>foregroundColor</key>
 				<dict>
 					<key>red</key>
