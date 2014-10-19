@@ -8,6 +8,7 @@
 @implementation CodeDocument
 
 @synthesize loaded;
+@synthesize language = _language;
 
 // Sets up the ScintillaView (and a few other things)
 -(void)setUpView {
@@ -21,7 +22,8 @@
 	 NSViewMinXMargin|NSViewWidthSizable|NSViewMaxXMargin|
 	 NSViewHeightSizable|
 	 NSViewMinYMargin];
-    [sm setLanguage:2];
+    [sm setLanguageForUTI:[self fileType]];
+    
 	// Create a NSScrollView to which we add the NSTextView
 	NSScrollView *scrollView = [[NSScrollView alloc] initWithFrame:NSZeroRect];
 	[scrollView setDocumentView:_sv];
@@ -65,8 +67,11 @@
 
 -(void)applyStyle {
     NSString *style = [[NSUserDefaults standardUserDefaults] objectForKey:@"style"];
-	// TODO: Get rid of hardcoded "cpp"
-	CodeStyler *styler = [[CodeStyler alloc] initWithTheme:style language:@"cpp"];
+    // 20 characters should be more than enough for any lexer module name
+    char lexerLanguageBuf[20];
+    [_sv message:SCI_GETLEXERLANGUAGE wParam:nil lParam:(sptr_t)lexerLanguageBuf];
+    NSString *lexerLanguage = [NSString stringWithCString:lexerLanguageBuf encoding:NSUTF8StringEncoding];
+	CodeStyler *styler = [[CodeStyler alloc] initWithTheme:style language:lexerLanguage];
 	[styler stylizeScintillaView:_sv];
 }
 
@@ -89,8 +94,11 @@
 
 #pragma mark Initializers
 -(id)init {
-	self = [super init];
-	[self setUpView];
+    self = [super init];
+    if(!_sv) {
+        [self setFileType:@"public.text"];
+        [self setUpView];
+    }
 	return self;
 }
 
@@ -101,8 +109,9 @@
 }
 
 - (id)initWithContentsOfURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError {
-	[self setUpView];
-	self = [super initWithContentsOfURL:absoluteURL ofType:typeName error:outError];
+    [self setFileType:typeName];
+    [self setUpView];
+    self = [super initWithContentsOfURL:absoluteURL ofType:typeName error:outError];
 	return self;
 }
 
@@ -144,10 +153,13 @@
 -(void)tabDidBecomeActive {
 	[self becomeFirstResponder];
 	[self addWindowController:browser_.windowController];
+    
+    // Set menu/toolbar options
     if(eolButton != nil) {
         BOOL showEOL = [_sv message:SCI_GETVIEWEOL];
         [eolButton setState:showEOL];
     }
+    [self setLanguageMenu:self.language];
 }
 
 -(void)tabWillResignActive {
@@ -258,10 +270,10 @@
 }
 
 #pragma mark Language switching
--(void)setLanguageMenu:(NSString*)title {
+-(void)setLanguageMenu:(NSInteger)tag {
 	AppDelegate *appDelegate = (AppDelegate*)[[NSApplication sharedApplication] delegate];
 	NSMenu *menu = [appDelegate languageMenu];
-	NSMenuItem *menuItem = [menu itemWithTitle:title];
+	NSMenuItem *menuItem = [menu itemWithTag:tag];
 	for(int i = 0; i < [[menu itemArray] count]; ++i) {
 		[[menu itemAtIndex:i] setState:NSOffState];
 	}
@@ -270,7 +282,15 @@
 
 -(IBAction)changeLanguage:(id)sender {
 	[sm setLanguage:[sender tag]];
-	[self setLanguageMenu:[sender title]];
+}
+
+-(NSInteger)language {
+    return _language;
+}
+
+-(void)setLanguage:(NSInteger)language {
+    _language = language;
+    [self setLanguageMenu:language];
 }
 
 #pragma mark Misc

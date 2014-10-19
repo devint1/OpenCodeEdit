@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>public.item</key>
+	<integer>1</integer>
+	<key>public.text</key>
+	<integer>1</integer>
+	<key>com.netscape.javascript-source</key>
+	<integer>50</integer>
+	<key>public.html</key>
+	<integer>47</integer>
+	<key>public.css</key>
+	<integer>29</integer>
+	<key>public.c-header</key>
+	<integer>2</integer>
+	<key>public.c-plus-plus-source</key>
+	<integer>2</integer>
+</dict>
+</plist>

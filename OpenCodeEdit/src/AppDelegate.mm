@@ -1,6 +1,8 @@
 #import "AppDelegate.h"
 #import "CodeDocument.h"
 
+#define DEBUG_UTI YES
+
 @implementation AppDelegate
 
 CTBrowser *browser;
@@ -15,7 +17,7 @@ CTBrowser *browser;
 
 - (void)newBrowserWindow {
 	if ([[self documents] count] < 1) {
-		if(browser == nil) {
+		if(!browser) {
 			browser = [CTBrowser browser];
 		}
 		browser.windowController = [[CTBrowserWindowController alloc] initWithBrowser:browser];
@@ -28,7 +30,7 @@ CTBrowser *browser;
 	return document;
 }
 
-// NOTE: Currently this just sets the active tab; it will not re-load the document
+// TODO: Currently this just sets the active tab; it will not re-load the document
 - (void)reopenDocumentForURL:(NSURL *)urlOrNil withContentsOfURL:(NSURL *)contentsURL display:(BOOL)displayDocument completionHandler:(void (^)(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error))completionHandler {
 	CodeDocument *document = [self documentForURL:urlOrNil];
 	int tabIndex = [browser indexOfTabContents:document];
@@ -46,19 +48,23 @@ CTBrowser *browser;
 }
 
 - (void)openDocumentWithContentsOfURL:(NSURL *)url display:(BOOL)displayDocument completionHandler:(void (^)(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error))completionHandler {
+	CFStringRef pathExtension = (__bridge CFStringRef)[[url lastPathComponent] pathExtension];
+	NSString *fileUTI = (__bridge NSString*)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension, nil);
+	if(DEBUG_UTI)
+		NSLog(@"UTI: %@",fileUTI);
 	BOOL documentAlreadyOpen = YES;
 	__block CodeDocument *document;
 	if([self documentForURL:url] == nil) {
 		documentAlreadyOpen = NO;
-		if ([CodeDocument canConcurrentlyReadDocumentsOfType:@"C++ Source"]) {
+		if ([CodeDocument canConcurrentlyReadDocumentsOfType:fileUTI]) {
 			dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-				document = [self makeDocumentWithContentsOfURL:url ofType:@"C++ Source" error:nil];
+				document = [self makeDocumentWithContentsOfURL:url ofType:fileUTI error:nil];
 				dispatch_sync(dispatch_get_main_queue(), ^{
 					[self finishOpenDocument:document documentAlreadyOpen:documentAlreadyOpen display:displayDocument url:url completionHandler:completionHandler];
 				});
 			});
 		} else {
-			document = [self makeDocumentWithContentsOfURL:url ofType:@"C++ Source" error:nil];
+			document = [self makeDocumentWithContentsOfURL:url ofType:fileUTI error:nil];
 			[self finishOpenDocument:document documentAlreadyOpen:documentAlreadyOpen display:displayDocument url:url completionHandler:completionHandler];
 		}
 	} else {

@@ -9,6 +9,10 @@
 #import <Scintilla/ScintillaView.h>
 #import "CodeStyler.h"
 
+#pragma mark Debug flags
+
+#define DEBUG_LANGUAGE YES
+
 #pragma mark Key constants
 
 #define COMMON @"common"
@@ -32,9 +36,11 @@
 static NSDictionary *properties;
 
 +(void)initialize {
-    NSBundle *mainBundle = [NSBundle mainBundle];
-    NSString *filePath = [mainBundle pathForResource:@"themes" ofType:@"plist"];
-    properties = [NSDictionary dictionaryWithContentsOfFile:filePath];
+    if(!properties) {
+        NSBundle *mainBundle = [NSBundle mainBundle];
+        NSString *filePath = [mainBundle pathForResource:@"themes" ofType:@"plist"];
+        properties = [NSDictionary dictionaryWithContentsOfFile:filePath];
+    }
 }
 
 +(NSArray*)getStyleNames {
@@ -66,8 +72,12 @@ static NSDictionary *properties;
 }
 
 -(id)initWithTheme:(NSString*)theme language:(NSString*)language {
-	styleElements = [[NSMutableArray alloc] init];
-	NSDictionary *themeStyles = [properties objectForKey:theme];
+    if(DEBUG_LANGUAGE)
+        NSLog(@"Styling for language: %@",language);
+    styleElements = [[NSMutableArray alloc] init];
+    NSDictionary *themeStyles = [properties objectForKey:theme];
+    NSDictionary *editorStyleDict = [themeStyles objectForKey:EDITOR];
+    editorStyle = [self elementForDictionary:editorStyleDict];
 	NSArray *commonStyles = [themeStyles objectForKey:COMMON];
 	int i;
 	for(i = 0; i < [commonStyles count]; ++i) {
@@ -81,8 +91,6 @@ static NSDictionary *properties;
 		CodeStyleElement *elem = [self elementForDictionary:style];
 		[styleElements addObject:elem];
 	}
-	NSDictionary *editorStyleDict = [themeStyles objectForKey:EDITOR];
-	editorStyle = [self elementForDictionary:editorStyleDict];
 	return self;
 }
 

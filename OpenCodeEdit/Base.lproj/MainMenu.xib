@@ -1246,7 +1246,6 @@
 									<string key="NSTitle">C/C++</string>
 									<string key="NSKeyEquiv"/>
 									<int key="NSMnemonicLoc">2147483647</int>
-									<int key="NSState">1</int>
 									<reference key="NSOnImage" ref="35465992"/>
 									<reference key="NSMixedImage" ref="502551668"/>
 									<int key="NSTag">2</int>
@@ -2361,14 +2360,6 @@ y7bMNcy1zTXNtc42zrbPN8+40DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo2WzZ8dp2
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">setLanguage:</string>
-						<reference key="source" ref="1014"/>
-						<reference key="destination" ref="713278623"/>
-					</object>
-					<int key="connectionID">569</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
 						<string key="label">changeLanguage:</string>
 						<reference key="source" ref="1014"/>
 						<reference key="destination" ref="791560552"/>
@@ -2398,6 +2389,14 @@ y7bMNcy1zTXNtc42zrbPN8+40DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo2WzZ8dp2
 						<reference key="destination" ref="747441181"/>
 					</object>
 					<int key="connectionID">581</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">changeLanguage:</string>
+						<reference key="source" ref="1014"/>
+						<reference key="destination" ref="713278623"/>
+					</object>
+					<int key="connectionID">582</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -3720,7 +3719,7 @@ y7bMNcy1zTXNtc42zrbPN8+40DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo2WzZ8dp2
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">581</int>
+			<int key="maxID">582</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3929,6 +3928,7 @@ y7bMNcy1zTXNtc42zrbPN8+40DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo2WzZ8dp2
 						<string key="changeLanguage:">id</string>
 						<string key="decreaseIndent:">id</string>
 						<string key="increaseIndent:">id</string>
+						<string key="performFindPanelAction:">id</string>
 						<string key="toggleEOL:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
@@ -3942,6 +3942,10 @@ y7bMNcy1zTXNtc42zrbPN8+40DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo2WzZ8dp2
 						</object>
 						<object class="IBActionInfo" key="increaseIndent:">
 							<string key="name">increaseIndent:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="performFindPanelAction:">
+							<string key="name">performFindPanelAction:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="toggleEOL:">

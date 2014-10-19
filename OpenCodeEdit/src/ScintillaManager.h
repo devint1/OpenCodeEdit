@@ -19,5 +19,6 @@
 
 -(id)initWithCodeDocument:(CodeDocument*)codeDocument;
 -(void)setLanguage:(NSInteger)tag;
+-(void)setLanguageForUTI:(NSString*)uti;
 
 @end

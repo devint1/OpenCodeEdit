@@ -20,6 +20,16 @@
 
 @implementation ScintillaManager
 
+static NSDictionary *utiToLangCode;
+
++(void)initialize {
+    if(!utiToLangCode) {
+        NSBundle *mainBundle = [NSBundle mainBundle];
+        NSString *filePath = [mainBundle pathForResource:@"languages" ofType:@"plist"];
+        utiToLangCode = [NSDictionary dictionaryWithContentsOfFile:filePath];
+    }
+}
+
 -(id)initWithCodeDocument:(CodeDocument*)codeDocument {
     document = codeDocument;
     sv = [document sv];
@@ -184,7 +194,7 @@ const char braces[] = {'(', ')', '[', ']', '{', '}'};
         [tabs insertString:@"\n" atIndex:0];
         [tabs appendString:@"}"];
         [sv insertText:@"\t"];
-		[sv message:SCI_INSERTTEXT wParam:pos + [tabs length] - 1 lParam:(sptr_t)[tabs cString]];
+		[sv message:SCI_INSERTTEXT wParam:pos + [tabs length] - 1 lParam:(sptr_t)[tabs cStringUsingEncoding:NSUTF8StringEncoding]];
 		pos = [sv getGeneralProperty:SCI_GETCURRENTPOS];
 		[sv message:SCI_FINDINDICATORFLASH wParam:pos + [tabs length] - 1 lParam:pos + [tabs length]];
     }
@@ -198,7 +208,11 @@ const char braces[] = {'(', ')', '[', ']', '{', '}'};
 
 #pragma mark Language setting
 -(void)setLanguage:(NSInteger)tag {
+    [sv message:SCI_CLEARDOCUMENTSTYLE];
     switch (tag) {
+        case LANG_NONE:
+            [self setLangNone];
+            break;
         case LANG_CPP:
             [self setLangCpp];
             break;
@@ -209,7 +223,7 @@ const char braces[] = {'(', ')', '[', ']', '{', '}'};
             [self setLangHtml];
             break;
         case LANG_JAVASCRIPT:
-            [self setLangHtml];
+            [self setLangJavascript];
             break;
         default:
             break;
@@ -217,6 +231,15 @@ const char braces[] = {'(', ')', '[', ']', '{', '}'};
     [document setLanguage:tag];
     [document applyStyle];
     [sv message:SCI_COLOURISE wParam:0 lParam:-1];
+}
+
+-(void)setLanguageForUTI:(NSString*)uti {
+    NSInteger langCode = [[utiToLangCode objectForKey:uti] integerValue];
+    [self setLanguage:langCode];
+}
+
+-(void)setLangNone {
+    [sv setGeneralProperty:SCI_SETLEXER value:SCLEX_NULL];
 }
 
 -(void)setLangCpp {

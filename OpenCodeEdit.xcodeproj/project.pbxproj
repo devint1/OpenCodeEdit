@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0370A6BE19F4478600B8677C /* languages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0370A6BD19F4478600B8677C /* languages.plist */; };
 		E3356EC119F2FCDB00277BE7 /* FindBarController.mm in Sources */ = {isa = PBXBuildFile; fileRef = E3356EC019F2FCDB00277BE7 /* FindBarController.mm */; };
 		E3356EC319F2FD0A00277BE7 /* FindBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3356EC219F2FD0A00277BE7 /* FindBar.xib */; };
 		E3356EC619F30E9C00277BE7 /* FindBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3356EC519F30E9C00277BE7 /* FindBarView.m */; };
@@ -39,7 +40,6 @@
 		E3F876E319F1E5AC00AD747C /* Toolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3F876D519F1E5AC00AD747C /* Toolbar.xib */; };
 		E3F876E419F1E5AC00AD747C /* undo.png in Resources */ = {isa = PBXBuildFile; fileRef = E3F876D619F1E5AC00AD747C /* undo.png */; };
 		E3F876E819F1E5C500AD747C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E3F876E719F1E5C500AD747C /* main.m */; };
-		E3F876EE19F1E65800AD747C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3F876ED19F1E65800AD747C /* Info.plist */; };
 		E3F876F319F1E6B400AD747C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3F876F219F1E6B400AD747C /* Foundation.framework */; };
 		E3F876F519F1E77000AD747C /* CodeEditTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E3F876F419F1E77000AD747C /* CodeEditTests.m */; };
 		E3F876F819F1E7DF00AD747C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3F876F619F1E7DF00AD747C /* MainMenu.xib */; };
@@ -114,6 +114,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0370A6BD19F4478600B8677C /* languages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = languages.plist; sourceTree = "<group>"; };
 		E31B6E8B19E9AE1100FAF947 /* OpenCodeEdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenCodeEdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E31B6E9E19E9AE1100FAF947 /* OpenCodeEditTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenCodeEditTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3356EBE19F2F97200277BE7 /* Languages.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Languages.h; path = OpenCodeEdit/src/Languages.h; sourceTree = SOURCE_ROOT; };
@@ -336,6 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				E3F876FA19F1E82500AD747C /* themes.plist */,
+				0370A6BD19F4478600B8677C /* languages.plist */,
 			);
 			name = Data;
 			path = OpenCodeEdit/data;
@@ -471,7 +473,6 @@
 				E3F876E219F1E5AC00AD747C /* saveall.png in Resources */,
 				E3F876E319F1E5AC00AD747C /* Toolbar.xib in Resources */,
 				E3F876E019F1E5AC00AD747C /* redo.png in Resources */,
-				E3F876EE19F1E65800AD747C /* Info.plist in Resources */,
 				E3F876D719F1E5AC00AD747C /* copy.png in Resources */,
 				E3F876D919F1E5AC00AD747C /* decreaseIndent.png in Resources */,
 				E3F876DF19F1E5AC00AD747C /* Preferences.xib in Resources */,
@@ -479,6 +480,7 @@
 				E35921E719E9AFA900FFCC05 /* TabView.xib in Resources */,
 				E3F876DD19F1E5AC00AD747C /* paragraph.png in Resources */,
 				E3F876E119F1E5AC00AD747C /* save.png in Resources */,
+				0370A6BE19F4478600B8677C /* languages.plist in Resources */,
 				E3F876E419F1E5AC00AD747C /* undo.png in Resources */,
 				E3F876D819F1E5AC00AD747C /* cut.png in Resources */,
 			);
