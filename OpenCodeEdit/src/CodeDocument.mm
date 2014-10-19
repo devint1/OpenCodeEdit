@@ -2,6 +2,8 @@
 #import "AppDelegate.h"
 #import "CodeDocument.h"
 #import "CodeStyler.h"
+#import "FindBarController.h"
+#import "FindBarView.h"
 
 @implementation CodeDocument
 
@@ -68,7 +70,7 @@
 	[styler stylizeScintillaView:_sv];
 }
 
-#pragma mark Button actions
+#pragma mark Toolbar button actions
 -(IBAction)increaseIndent:(id)sender {
     [_sv message:SCI_TAB];
 }
@@ -185,7 +187,77 @@
 	return shouldClose;
 }
 
-#pragma mark Misc
+#pragma mark Finding
+-(void)findNext {
+	if(![_sv message:SCI_GETSELECTIONEMPTY]) {
+		[_sv message:SCI_GOTOPOS wParam:[_sv message:SCI_GETSELECTIONEND]];
+	}
+	[_sv message:SCI_SEARCHANCHOR];
+	long wordStart = [_sv message:SCI_SEARCHNEXT wParam:0 lParam:(sptr_t)[[[findBar findField] stringValue] cStringUsingEncoding:NSUTF8StringEncoding]];
+	long wordEnd = [_sv message:SCI_WORDENDPOSITION wParam:wordStart lParam:NO];
+	if(wordStart > -1) {
+		[_sv message:SCI_SCROLLRANGE wParam:wordEnd lParam:wordStart];
+		[_sv message:SCI_FINDINDICATORFLASH wParam:wordStart lParam:wordEnd];
+	}
+}
+
+-(void)findPrevious {
+	[_sv message:SCI_SEARCHANCHOR];
+	long wordStart = [_sv message:SCI_SEARCHPREV wParam:0 lParam:(sptr_t)[[[findBar findField] stringValue] cStringUsingEncoding:NSUTF8StringEncoding]];
+	long wordEnd = [_sv message:SCI_WORDENDPOSITION wParam:wordStart lParam:NO];
+	if(wordStart > -1) {
+		[_sv message:SCI_SCROLLRANGE wParam:wordEnd lParam:wordStart];
+		[_sv message:SCI_FINDINDICATORFLASH wParam:wordStart lParam:wordEnd];
+	}
+}
+
+-(IBAction)performFindPanelAction:(id)sender {
+	if([sender isKindOfClass:[NSSegmentedControl class]]) {
+		if([sender selectedSegment])
+			[self findNext];
+		else
+			[self findPrevious];
+		return;
+	}
+	switch([sender tag]) {
+		case 1: {
+			if(!findBar) {
+				findBar = [[FindBarController alloc] initWithNibName:@"FindBar" bundle:[NSBundle mainBundle]];
+			}
+			FindBarView *findBarView = (FindBarView*)[findBar view];
+			CGFloat windowHeight = [[browser_ window] frame].size.height;
+			CGFloat windowWidth = [[browser_ window] frame].size.width;
+			[findBarView setFrame:CGRectMake(0, windowHeight - 95, windowWidth, 25)];
+			[findBarView setWantsLayer:YES];
+			NSScrollView *scrollView = (NSScrollView*)[self view];
+			[scrollView removeConstraints:[scrollView constraints]];
+			[_sv setAutoresizingMask:NSViewMinXMargin|NSViewWidthSizable|NSViewMaxXMargin|NSViewHeightSizable];
+			[_sv setFrame:CGRectMake(0, 0, windowWidth, windowHeight - 95)];
+			[[[browser_ window] contentView] addSubview:findBarView];
+			[[findBar findField] becomeFirstResponder];
+			break;
+		}
+		case 2:
+			[self findNext];
+			break;
+		case 3:
+			[self findPrevious];
+			break;
+	}
+}
+
+-(void)removeFindBar {
+	CGFloat windowHeight = [[browser_ window] frame].size.height;
+	CGFloat windowWidth = [[browser_ window] frame].size.width;
+	[[findBar view] removeFromSuperview];
+	[_sv setAutoresizingMask:NSViewMaxYMargin|
+	 NSViewMinXMargin|NSViewWidthSizable|NSViewMaxXMargin|
+	 NSViewHeightSizable|
+	 NSViewMinYMargin];
+	[_sv setFrame:CGRectMake(0, 0, windowWidth, windowHeight - 70)];
+}
+
+#pragma mark Language switching
 -(void)setLanguageMenu:(NSString*)title {
 	AppDelegate *appDelegate = (AppDelegate*)[[NSApplication sharedApplication] delegate];
 	NSMenu *menu = [appDelegate languageMenu];
@@ -197,10 +269,11 @@
 }
 
 -(IBAction)changeLanguage:(id)sender {
-    [sm setLanguage:[sender tag]];
+	[sm setLanguage:[sender tag]];
 	[self setLanguageMenu:[sender title]];
 }
 
+#pragma mark Misc
 -(BOOL)loaded {
     return loaded;
 }

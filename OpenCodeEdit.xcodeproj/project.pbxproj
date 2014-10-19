@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E3356EC119F2FCDB00277BE7 /* FindBarController.mm in Sources */ = {isa = PBXBuildFile; fileRef = E3356EC019F2FCDB00277BE7 /* FindBarController.mm */; };
+		E3356EC319F2FD0A00277BE7 /* FindBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3356EC219F2FD0A00277BE7 /* FindBar.xib */; };
+		E3356EC619F30E9C00277BE7 /* FindBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3356EC519F30E9C00277BE7 /* FindBarView.m */; };
 		E33EFF1B19F2CFFF000F4605 /* ScintillaManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = E33EFF1A19F2CFFF000F4605 /* ScintillaManager.mm */; };
 		E35921D919E9AEDC00FFCC05 /* ChromiumTabs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E35921D019E9AEB800FFCC05 /* ChromiumTabs.framework */; };
 		E35921DA19E9AEDC00FFCC05 /* ChromiumTabs.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E35921D019E9AEB800FFCC05 /* ChromiumTabs.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -114,6 +117,11 @@
 		E31B6E8B19E9AE1100FAF947 /* OpenCodeEdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenCodeEdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E31B6E9E19E9AE1100FAF947 /* OpenCodeEditTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenCodeEditTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3356EBE19F2F97200277BE7 /* Languages.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Languages.h; path = OpenCodeEdit/src/Languages.h; sourceTree = SOURCE_ROOT; };
+		E3356EBF19F2FCDB00277BE7 /* FindBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FindBarController.h; path = OpenCodeEdit/src/FindBarController.h; sourceTree = SOURCE_ROOT; };
+		E3356EC019F2FCDB00277BE7 /* FindBarController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = FindBarController.mm; path = OpenCodeEdit/src/FindBarController.mm; sourceTree = SOURCE_ROOT; };
+		E3356EC219F2FD0A00277BE7 /* FindBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FindBar.xib; path = OpenCodeEdit/interface/FindBar.xib; sourceTree = SOURCE_ROOT; };
+		E3356EC419F30E9C00277BE7 /* FindBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FindBarView.h; path = OpenCodeEdit/src/FindBarView.h; sourceTree = SOURCE_ROOT; };
+		E3356EC519F30E9C00277BE7 /* FindBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FindBarView.m; path = OpenCodeEdit/src/FindBarView.m; sourceTree = SOURCE_ROOT; };
 		E33EFF1919F2CFFF000F4605 /* ScintillaManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScintillaManager.h; path = OpenCodeEdit/src/ScintillaManager.h; sourceTree = SOURCE_ROOT; };
 		E33EFF1A19F2CFFF000F4605 /* ScintillaManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ScintillaManager.mm; path = OpenCodeEdit/src/ScintillaManager.mm; sourceTree = SOURCE_ROOT; };
 		E35921CA19E9AEB800FFCC05 /* chromium-tabs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "chromium-tabs.xcodeproj"; path = "chromium-tabs/chromium-tabs.xcodeproj"; sourceTree = "<group>"; };
@@ -260,9 +268,12 @@
 			isa = PBXGroup;
 			children = (
 				E35921E119E9AFA900FFCC05 /* BrowserWindow.xib */,
+				E3356EC219F2FD0A00277BE7 /* FindBar.xib */,
 				E35921E219E9AFA900FFCC05 /* TabContents.xib */,
 				E35921E319E9AFA900FFCC05 /* TabView.xib */,
 				E3F876F619F1E7DF00AD747C /* MainMenu.xib */,
+				E3F876D119F1E5AC00AD747C /* Preferences.xib */,
+				E3F876D519F1E5AC00AD747C /* Toolbar.xib */,
 				E3F876C919F1E5AC00AD747C /* copy.png */,
 				E3F876CA19F1E5AC00AD747C /* cut.png */,
 				E3F876CB19F1E5AC00AD747C /* decreaseIndent.png */,
@@ -271,11 +282,9 @@
 				E3F876CE19F1E5AC00AD747C /* open.png */,
 				E3F876CF19F1E5AC00AD747C /* paragraph.png */,
 				E3F876D019F1E5AC00AD747C /* paste.png */,
-				E3F876D119F1E5AC00AD747C /* Preferences.xib */,
 				E3F876D219F1E5AC00AD747C /* redo.png */,
 				E3F876D319F1E5AC00AD747C /* save.png */,
 				E3F876D419F1E5AC00AD747C /* saveall.png */,
-				E3F876D519F1E5AC00AD747C /* Toolbar.xib */,
 				E3F876D619F1E5AC00AD747C /* undo.png */,
 			);
 			name = Interface;
@@ -298,6 +307,8 @@
 				E3F876BA19F1E59E00AD747C /* CodeDocument.mm */,
 				E3F876BC19F1E59E00AD747C /* CodeStyleElement.m */,
 				E3F876BE19F1E59E00AD747C /* CodeStyler.mm */,
+				E3356EC019F2FCDB00277BE7 /* FindBarController.mm */,
+				E3356EC519F30E9C00277BE7 /* FindBarView.m */,
 				E3F876C119F1E59E00AD747C /* PreferencesController.mm */,
 				E33EFF1A19F2CFFF000F4605 /* ScintillaManager.mm */,
 			);
@@ -311,6 +322,8 @@
 				E3F876B919F1E59E00AD747C /* CodeDocument.h */,
 				E3F876BB19F1E59E00AD747C /* CodeStyleElement.h */,
 				E3F876BD19F1E59E00AD747C /* CodeStyler.h */,
+				E3356EBF19F2FCDB00277BE7 /* FindBarController.h */,
+				E3356EC419F30E9C00277BE7 /* FindBarView.h */,
 				E3356EBE19F2F97200277BE7 /* Languages.h */,
 				E3F876C019F1E59E00AD747C /* PreferencesController.h */,
 				E33EFF1919F2CFFF000F4605 /* ScintillaManager.h */,
@@ -451,6 +464,7 @@
 				E35921E519E9AFA900FFCC05 /* BrowserWindow.xib in Resources */,
 				E3F876DE19F1E5AC00AD747C /* paste.png in Resources */,
 				E3F876F819F1E7DF00AD747C /* MainMenu.xib in Resources */,
+				E3356EC319F2FD0A00277BE7 /* FindBar.xib in Resources */,
 				E3F876DA19F1E5AC00AD747C /* increaseIndent.png in Resources */,
 				E3F876DC19F1E5AC00AD747C /* open.png in Resources */,
 				E35921E619E9AFA900FFCC05 /* TabContents.xib in Resources */,
@@ -500,7 +514,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3356EC119F2FCDB00277BE7 /* FindBarController.mm in Sources */,
 				E3F876C619F1E59E00AD747C /* CodeStyler.mm in Sources */,
+				E3356EC619F30E9C00277BE7 /* FindBarView.m in Sources */,
 				E33EFF1B19F2CFFF000F4605 /* ScintillaManager.mm in Sources */,
 				E3F876C519F1E59E00AD747C /* CodeStyleElement.m in Sources */,
 				E3F876C419F1E59E00AD747C /* CodeDocument.mm in Sources */,

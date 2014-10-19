@@ -33,19 +33,19 @@
             [document setLoaded:YES];
             [sv setStatusText:@"Ready"];
             break;
-        case SCN_UPDATEUI: {
-            long pos = [sv message:SCI_GETCURRENTPOS];
-            // Style debugging
-            if(DEBUG_STYLE) {
-                NSString *statusText = [NSString stringWithFormat:@"Style: %ld",[sv getGeneralProperty:SCI_GETSTYLEAT parameter:pos]];
-                [sv setStatusText:statusText];
-            }
-            
-            [self handleMatchingBraces];
-            [self handleWordMatches];
-            break;
-        }
-        case SCN_MODIFIED:
+		case SCN_UPDATEUI:
+			if(notification->updated == SC_UPDATE_SELECTION) {
+				long pos = [sv message:SCI_GETCURRENTPOS];
+				// Style debugging
+				if(DEBUG_STYLE) {
+					NSString *statusText = [NSString stringWithFormat:@"Style: %ld",[sv getGeneralProperty:SCI_GETSTYLEAT parameter:pos]];
+					[sv setStatusText:statusText];
+				}
+				[self handleMatchingBraces];
+				[self handleWordMatches];
+			}
+			break;
+		case SCN_MODIFIED:
             [self handleDocumentModifications:notification];
             break;
         case SCN_CHARADDED:
@@ -82,10 +82,14 @@ const char braces[] = {'(', ')', '[', ']', '{', '}'};
     long startBefore = startAfter - 1;
     long endAfter = [sv message:SCI_BRACEMATCH wParam:startAfter lParam:0];
     long endBefore = [sv message:SCI_BRACEMATCH wParam:startBefore lParam:0];
-    if(endAfter >= 0)
-        [sv setGeneralProperty:SCI_BRACEHIGHLIGHT parameter:startAfter value:endAfter];
-    else if (endBefore >= 0)
+	if(endAfter >= 0) {
+		[sv setGeneralProperty:SCI_BRACEHIGHLIGHT parameter:startAfter value:endAfter];
+		[sv message:SCI_FINDINDICATORFLASH wParam:endAfter lParam:endAfter + 1];
+	}
+	else if (endBefore >= 0) {
         [sv setGeneralProperty:SCI_BRACEHIGHLIGHT parameter:startBefore value:endBefore];
+		[sv message:SCI_FINDINDICATORFLASH wParam:endBefore lParam:endBefore + 1];
+	}
     else {
         [sv setGeneralProperty:SCI_BRACEHIGHLIGHT parameter:-1 value:-1];
         if([self isBrace:startAfter])
@@ -174,12 +178,15 @@ const char braces[] = {'(', ')', '[', ']', '{', '}'};
     }
     [sv insertText:tabs];
     // Add close brace to blocks and increase indent
+	// TODO: Support other syntax besides C++
     char prevChar = [sv message:SCI_GETCHARAT wParam:pos - 2];
     if(prevChar == '{') {
         [tabs insertString:@"\n" atIndex:0];
         [tabs appendString:@"}"];
         [sv insertText:@"\t"];
-        [sv message:SCI_INSERTTEXT wParam:pos + [tabs length] - 1 lParam:(sptr_t)[tabs cString]];
+		[sv message:SCI_INSERTTEXT wParam:pos + [tabs length] - 1 lParam:(sptr_t)[tabs cString]];
+		pos = [sv getGeneralProperty:SCI_GETCURRENTPOS];
+		[sv message:SCI_FINDINDICATORFLASH wParam:pos + [tabs length] - 1 lParam:pos + [tabs length]];
     }
 }
 
