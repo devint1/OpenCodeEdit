@@ -817,7 +817,7 @@
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = ChromiumTabs;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.9;
 			};
 			name = Debug;
 		};
@@ -864,7 +864,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = ChromiumTabs;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.9;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -904,7 +904,7 @@
 					"$(OTHER_CFLAGS)",
 				);
 				PRODUCT_NAME = "Chromium Tabs";
-				SDKROOT = macosx;
+				SDKROOT = macosx10.9;
 			};
 			name = Debug;
 		};
@@ -942,7 +942,7 @@
 					"$(OTHER_CFLAGS)",
 				);
 				PRODUCT_NAME = "Chromium Tabs";
-				SDKROOT = macosx;
+				SDKROOT = macosx10.9;
 			};
 			name = Release;
 		};

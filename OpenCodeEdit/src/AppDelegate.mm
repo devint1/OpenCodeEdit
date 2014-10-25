@@ -25,10 +25,10 @@ static NSDictionary *defaultValues() {
 }
 
 - (void)newBrowserWindow {
+	if(!browser) {
+		browser = [CTBrowser browser];
+	}
 	if ([[self documents] count] < 1) {
-		if(!browser) {
-			browser = [CTBrowser browser];
-		}
 		browser.windowController = [[CTBrowserWindowController alloc] initWithBrowser:browser];
 		[browser.windowController showWindow:self];
 	}

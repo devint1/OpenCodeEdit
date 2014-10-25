@@ -6,6 +6,8 @@
 	<integer>1</integer>
 	<key>public.text</key>
 	<integer>1</integer>
+	<key>public.plain-text</key>
+	<integer>1</integer>
 	<key>com.netscape.javascript-source</key>
 	<integer>50</integer>
 	<key>public.html</key>

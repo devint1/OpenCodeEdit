@@ -113,7 +113,8 @@ extern NSString *const SCIUpdateUINotification;
   NSView <InfoBarCommunicator>* mInfoBar;
   BOOL mInfoBarAtTop;
 
-  id<ScintillaNotificationProtocol> mDelegate;
+  // MODIFIED: Set delegate to __weak (fixes crash on load)
+  __weak id<ScintillaNotificationProtocol> mDelegate;
 }
 
 @property (nonatomic, readonly) Scintilla::ScintillaCocoa* backend;

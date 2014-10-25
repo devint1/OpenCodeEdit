@@ -70,7 +70,7 @@
     NSString *style = [[NSUserDefaults standardUserDefaults] objectForKey:UD_THEME];
     // 20 characters should be more than enough for any lexer module name
     char lexerLanguageBuf[20];
-    [_sv message:SCI_GETLEXERLANGUAGE wParam:nil lParam:(sptr_t)lexerLanguageBuf];
+    [_sv message:SCI_GETLEXERLANGUAGE wParam:(uptr_t)nil lParam:(sptr_t)lexerLanguageBuf];
     NSString *lexerLanguage = [NSString stringWithCString:lexerLanguageBuf encoding:NSUTF8StringEncoding];
 	CodeStyler *styler = [[CodeStyler alloc] initWithTheme:style language:lexerLanguage];
 	[styler stylizeScintillaView:_sv];
@@ -120,12 +120,13 @@
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError {
 	NSString *docName = [self title];
 	[_sv setStatusText:[NSString stringWithFormat:@"Loading document: %@",docName,nil]];
-	void *bytes = malloc([data length]);
-	[data getBytes:bytes];
-	[_sv message:SCI_APPENDTEXT wParam:[data length] lParam:(sptr_t)bytes];
-	free(bytes);
+	
+	// Do raw data read
+	// TODO: Need to detect and set Scintilla code page
+	[_sv message:SCI_APPENDTEXT wParam:[data length] lParam:(sptr_t)[data bytes]];
 	[_sv message:SCI_EMPTYUNDOBUFFER];
 	[_sv message:SCI_SETSAVEPOINT];
+	
 	[_sv setStatusText:[NSString stringWithFormat:@"Loaded document: %@",docName,nil]];
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
 		[NSThread sleepForTimeInterval:3];
@@ -137,10 +138,11 @@
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError {
 	NSString *docName = [self title];
 	[_sv setStatusText:[NSString stringWithFormat:@"Saving document: %@",docName,nil]];
-	long docLength = [_sv getGeneralProperty:SCI_GETLENGTH] + 1;
-	char text[docLength];
-	[_sv message:SCI_GETTEXT wParam:docLength lParam:(sptr_t)text];
+	char *text = (char*)[_sv message:SCI_GETCHARACTERPOINTER];
+	
+	// TODO: Encoding conversion done here
 	NSString *strText = [NSString stringWithCString:text encoding:NSUTF8StringEncoding];
+	
 	NSData *data = [strText dataUsingEncoding:NSUTF8StringEncoding];
 	[_sv setStatusText:[NSString stringWithFormat:@"Saved document: %@",docName,nil]];
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{

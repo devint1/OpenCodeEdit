@@ -43,8 +43,9 @@ static NSDictionary *utiToLangCode;
             [document setLoaded:YES];
             [sv setStatusText:@"Ready"];
             break;
-		case SCN_UPDATEUI:
-			if(notification->updated == SC_UPDATE_SELECTION) {
+		case SCN_UPDATEUI: {
+			long selectionLength = [sv message:SCI_GETSELECTIONEND] - [sv message:SCI_GETSELECTIONSTART];
+			if((notification->updated == SC_UPDATE_SELECTION || notification->updated == SC_UPDATE_CONTENT) && !selectionLength) {
 				long pos = [sv message:SCI_GETCURRENTPOS];
 				// Style debugging
 				if(DEBUG_STYLE) {
@@ -55,10 +56,11 @@ static NSDictionary *utiToLangCode;
 				[self handleWordMatches];
 			}
 			break;
+		}
 		case SCN_MODIFIED:
             [self handleDocumentModifications:notification];
             break;
-        case SCN_CHARADDED:
+		case SCN_CHARADDED:
             if(notification->ch == '\r' || notification->ch == '\n') {
                 [self handleAutoIndent];
             }
@@ -117,7 +119,7 @@ const char braces[] = {'(', ')', '[', ']', '{', '}'};
     tr.chrg.cpMin = wordStart;
     tr.chrg.cpMax = wordEnd;
     tr.lpstrText = new char[wordEnd - wordStart];
-    [sv message:SCI_GETTEXTRANGE wParam:nil lParam:(sptr_t)&tr];
+    [sv message:SCI_GETTEXTRANGE wParam:(uptr_t)nil lParam:(sptr_t)&tr];
     Sci_TextToFind ttf;
     ttf.chrg.cpMin = 0;
     ttf.chrg.cpMax = wordStart - 1;
@@ -173,9 +175,9 @@ const char braces[] = {'(', ')', '[', ']', '{', '}'};
     // Auto indent
     long pos = [sv getGeneralProperty:SCI_GETCURRENTPOS];
     long line = [sv getGeneralProperty:SCI_LINEFROMPOSITION parameter:pos];
-    long lineLen = [sv getGeneralProperty:SCI_LINELENGTH parameter:line - 1];
+    long lineLen = [sv getGeneralProperty:SCI_LINELENGTH parameter:line + 1];
     char lineBuf[lineLen];
-    [sv message:SCI_GETLINE wParam:line - 1 lParam:(sptr_t)lineBuf];
+    [sv message:SCI_GETLINE wParam:line + 1 lParam:(sptr_t)lineBuf];
     NSMutableString *tabs = [NSMutableString stringWithString:@""];
     int i;
     for(i = 0; i < lineLen; ++i) {
@@ -190,7 +192,8 @@ const char braces[] = {'(', ')', '[', ']', '{', '}'};
     // Add close brace to blocks and increase indent
 	// TODO: Support other syntax besides C++
     char prevChar = [sv message:SCI_GETCHARAT wParam:pos - 2];
-    if(prevChar == '{') {
+	BOOL braceBad = [sv message:SCI_BRACEMATCH wParam:pos - 2 lParam:0] == -1;
+    if(prevChar == '{' && braceBad) {
         [tabs insertString:@"\n" atIndex:0];
         [tabs appendString:@"}"];
         [sv insertText:@"\t"];
@@ -235,6 +238,8 @@ const char braces[] = {'(', ')', '[', ']', '{', '}'};
 
 -(void)setLanguageForUTI:(NSString*)uti {
     NSInteger langCode = [[utiToLangCode objectForKey:uti] integerValue];
+    if(!langCode)
+        langCode = LANG_NONE;
     [self setLanguage:langCode];
 }
 

@@ -659,7 +659,9 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = OpenCodeEdit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = OpenCodeEdit;
+				SDKROOT = macosx10.9;
 			};
 			name = Debug;
 		};
@@ -671,7 +673,9 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = OpenCodeEdit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = OpenCodeEdit;
+				SDKROOT = macosx10.9;
 			};
 			name = Release;
 		};
@@ -692,6 +696,7 @@
 				INFOPLIST_FILE = OpenCodeEditTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = OpenCodeEditTests;
+				SDKROOT = macosx10.9;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenCodeEdit.app/Contents/MacOS/OpenCodeEdit";
 			};
 			name = Debug;
@@ -709,6 +714,7 @@
 				INFOPLIST_FILE = OpenCodeEditTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = OpenCodeEditTests;
+				SDKROOT = macosx10.9;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenCodeEdit.app/Contents/MacOS/OpenCodeEdit";
 			};
 			name = Release;
