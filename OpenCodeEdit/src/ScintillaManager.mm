@@ -222,6 +222,7 @@ const char braces[] = {'(', ')', '[', ']', '{', '}'};
 			[sv setGeneralProperty:SCI_SETLEXER value:SCLEX_NULL];
             break;
 		case LANG_CPP:
+		case LANG_JAVA:
 		case LANG_JAVASCRIPT:
 			[sv setGeneralProperty:SCI_SETLEXER value:SCLEX_CPP];
             break;
@@ -271,7 +272,6 @@ const char braces[] = {'(', ')', '[', ']', '{', '}'};
 	switch (language) {
 		case LANG_CPP:
 			[sv message:SCI_SETPROPERTY wParam:(uptr_t)"fold.preprocessor" lParam:(sptr_t)"1"];
-			[sv message:SCI_SETPROPERTY wParam:(uptr_t)"fold.comment" lParam:(sptr_t)"1"];
 			[sv message:SCI_SETPROPERTY wParam:(uptr_t)"lexer.cpp.track.preprocessor" lParam:(sptr_t)"0"];
 			break;
 		case LANG_HTML:

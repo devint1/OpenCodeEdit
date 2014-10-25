@@ -24,5 +24,7 @@
 	<integer>115</integer>
 	<key>public.python-script</key>
 	<integer>87</integer>
+	<key>com.sun.java-source</key>
+	<integer>49</integer>
 </dict>
 </plist>
