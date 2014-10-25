@@ -21,13 +21,18 @@
 @implementation ScintillaManager
 
 static NSDictionary *utiToLangCode;
+static NSDictionary *keywords;
 
 +(void)initialize {
+	NSBundle *mainBundle = [NSBundle mainBundle];
     if(!utiToLangCode) {
-        NSBundle *mainBundle = [NSBundle mainBundle];
         NSString *filePath = [mainBundle pathForResource:@"languages" ofType:@"plist"];
         utiToLangCode = [NSDictionary dictionaryWithContentsOfFile:filePath];
     }
+	if(!keywords) {
+		NSString *filePath = [mainBundle pathForResource:@"keywords" ofType:@"plist"];
+		keywords = [NSDictionary dictionaryWithContentsOfFile:filePath];
+	}
 }
 
 -(id)initWithCodeDocument:(CodeDocument*)codeDocument {
@@ -213,26 +218,42 @@ const char braces[] = {'(', ')', '[', ']', '{', '}'};
 -(void)setLanguage:(NSInteger)tag {
     [sv message:SCI_CLEARDOCUMENTSTYLE];
     switch (tag) {
-        case LANG_NONE:
-            [self setLangNone];
+		case LANG_NONE:
+			[sv setGeneralProperty:SCI_SETLEXER value:SCLEX_NULL];
             break;
-        case LANG_CPP:
-            [self setLangCpp];
+		case LANG_CPP:
+		case LANG_JAVASCRIPT:
+			[sv setGeneralProperty:SCI_SETLEXER value:SCLEX_CPP];
             break;
-        case LANG_CSS:
-            [self setLangCss];
+		case LANG_CSS:
+			[sv setGeneralProperty:SCI_SETLEXER value:SCLEX_CSS];
             break;
-        case LANG_HTML:
-            [self setLangHtml];
+		case LANG_HTML:
+			[sv setGeneralProperty:SCI_SETLEXER value:SCLEX_HTML];
             break;
-        case LANG_JAVASCRIPT:
-            [self setLangJavascript];
-            break;
+		case LANG_MAKEFILE:
+			[sv setGeneralProperty:SCI_SETLEXER value:SCLEX_MAKEFILE];
+			break;
+		case LANG_PYTHON:
+			[sv setGeneralProperty:SCI_SETLEXER value:SCLEX_PYTHON];
+			break;
+		case LANG_XML:
+			[sv setGeneralProperty:SCI_SETLEXER value:SCLEX_XML];
+			break;
+		case LANG_YAML:
+			[sv setGeneralProperty:SCI_SETLEXER value:SCLEX_YAML];
+			break;
         default:
             break;
     }
+	[self setProperties:tag];
     [document setLanguage:tag];
     [document applyStyle];
+	NSString *keywordString = [keywords objectForKey:[NSString stringWithFormat:@"%ld",tag]];
+	if(keywordString)
+		[sv setStringProperty:SCI_SETKEYWORDS parameter:0 value:keywordString];
+	else
+		[sv setStringProperty:SCI_SETKEYWORDS parameter:0 value:@""];
     [sv message:SCI_COLOURISE wParam:0 lParam:-1];
 }
 
@@ -243,51 +264,24 @@ const char braces[] = {'(', ')', '[', ']', '{', '}'};
     [self setLanguage:langCode];
 }
 
--(void)setLangNone {
-    [sv setGeneralProperty:SCI_SETLEXER value:SCLEX_NULL];
-}
-
--(void)setLangCpp {
-    [sv setGeneralProperty:SCI_SETLEXER value:SCLEX_CPP];
-    
-    [sv message:SCI_SETPROPERTY wParam:(uptr_t)"lexer.cpp.track.preprocessor" lParam:(sptr_t)"0"];
-    
-    // C++ Keywords
-    // TODO: Need to save these in a file and have them for other languages
-    [sv setStringProperty:SCI_SETKEYWORDS parameter:0 value:@"alignas alignof and and_eq asm auto bitand bitor bool break case catch char char16_t char32_t class compl const constexpr const_cast continue decltype default delete do double dynamic_cast else enum explicit export extern false float for friend goto if inline int long mutable namespace new noexcept not not_eq nullptr operator or or_eq private protected public register reinterpret_cast return short signed sizeof static static_assert static_cast struct switch template this thread_local throw true try typedef typeid typename union unsigned using virtual void volatile wchar_t while xor xor_eq"];
-    
-    // Set items to fold
-    [sv message:SCI_SETPROPERTY wParam:(uptr_t)"fold" lParam:(sptr_t)"1"];
-    [sv message:SCI_SETPROPERTY wParam:(uptr_t)"fold.compact" lParam:(sptr_t)"0"];
-    [sv message:SCI_SETPROPERTY wParam:(uptr_t)"fold.preprocessor" lParam:(sptr_t)"1"];
-    [sv message:SCI_SETPROPERTY wParam:(uptr_t)"fold.comment" lParam:(sptr_t)"1"];
-}
-
--(void)setLangCss {
-    [sv setGeneralProperty:SCI_SETLEXER value:SCLEX_CSS];
-    
-    // Set items to fold
-    [sv message:SCI_SETPROPERTY wParam:(uptr_t)"fold" lParam:(sptr_t)"1"];
-    [sv message:SCI_SETPROPERTY wParam:(uptr_t)"fold.compact" lParam:(sptr_t)"0"];
-    [sv message:SCI_SETPROPERTY wParam:(uptr_t)"fold.comment" lParam:(sptr_t)"1"];
-}
-
--(void)setLangHtml {
-    [sv setGeneralProperty:SCI_SETLEXER value:SCLEX_HTML];
-    
-    // Set items to fold
-    [sv message:SCI_SETPROPERTY wParam:(uptr_t)"fold" lParam:(sptr_t)"1"];
-    [sv message:SCI_SETPROPERTY wParam:(uptr_t)"fold.compact" lParam:(sptr_t)"0"];
-    [sv message:SCI_SETPROPERTY wParam:(uptr_t)"fold.html" lParam:(sptr_t)"1"];
-    [sv message:SCI_SETPROPERTY wParam:(uptr_t)"fold.hypertext.comment" lParam:(sptr_t)"1"];
-}
-
--(void)setLangJavascript {
-    [sv setGeneralProperty:SCI_SETLEXER value:SCLEX_CPP];
-    
-    // Set items to fold
-    [sv message:SCI_SETPROPERTY wParam:(uptr_t)"fold" lParam:(sptr_t)"1"];
-    [sv message:SCI_SETPROPERTY wParam:(uptr_t)"fold.compact" lParam:(sptr_t)"0"];
+-(void)setProperties:(NSInteger)language {
+	[sv message:SCI_SETPROPERTY wParam:(uptr_t)"fold" lParam:(sptr_t)"1"];
+	[sv message:SCI_SETPROPERTY wParam:(uptr_t)"fold.compact" lParam:(sptr_t)"0"];
+	[sv message:SCI_SETPROPERTY wParam:(uptr_t)"fold.comment" lParam:(sptr_t)"1"];
+	switch (language) {
+		case LANG_CPP:
+			[sv message:SCI_SETPROPERTY wParam:(uptr_t)"fold.preprocessor" lParam:(sptr_t)"1"];
+			[sv message:SCI_SETPROPERTY wParam:(uptr_t)"fold.comment" lParam:(sptr_t)"1"];
+			[sv message:SCI_SETPROPERTY wParam:(uptr_t)"lexer.cpp.track.preprocessor" lParam:(sptr_t)"0"];
+			break;
+		case LANG_HTML:
+		case LANG_XML:
+			[sv message:SCI_SETPROPERTY wParam:(uptr_t)"fold.html" lParam:(sptr_t)"1"];
+			[sv message:SCI_SETPROPERTY wParam:(uptr_t)"fold.hypertext.comment" lParam:(sptr_t)"1"];
+			break;
+		default:
+			break;
+	}
 }
 
 @end

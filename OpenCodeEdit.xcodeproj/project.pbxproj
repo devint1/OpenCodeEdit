@@ -20,6 +20,7 @@
 		E35921E719E9AFA900FFCC05 /* TabView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E35921E319E9AFA900FFCC05 /* TabView.xib */; };
 		E3B9D81E19EB209A00691B10 /* Scintilla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E35921D819E9AEC600FFCC05 /* Scintilla.framework */; };
 		E3B9D81F19EB209A00691B10 /* Scintilla.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E35921D819E9AEC600FFCC05 /* Scintilla.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E3C1A77519FC311500EBFCF6 /* keywords.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3C1A77419FC311500EBFCF6 /* keywords.plist */; };
 		E3F876C319F1E59E00AD747C /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = E3F876B819F1E59E00AD747C /* AppDelegate.mm */; };
 		E3F876C419F1E59E00AD747C /* CodeDocument.mm in Sources */ = {isa = PBXBuildFile; fileRef = E3F876BA19F1E59E00AD747C /* CodeDocument.mm */; };
 		E3F876C519F1E59E00AD747C /* CodeStyleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E3F876BC19F1E59E00AD747C /* CodeStyleElement.m */; };
@@ -132,6 +133,7 @@
 		E35921E119E9AFA900FFCC05 /* BrowserWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BrowserWindow.xib; path = "chromium-tabs/resources/BrowserWindow.xib"; sourceTree = SOURCE_ROOT; };
 		E35921E219E9AFA900FFCC05 /* TabContents.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TabContents.xib; path = "chromium-tabs/resources/TabContents.xib"; sourceTree = SOURCE_ROOT; };
 		E35921E319E9AFA900FFCC05 /* TabView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TabView.xib; path = "chromium-tabs/resources/TabView.xib"; sourceTree = SOURCE_ROOT; };
+		E3C1A77419FC311500EBFCF6 /* keywords.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = keywords.plist; sourceTree = "<group>"; };
 		E3F876B719F1E59E00AD747C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = OpenCodeEdit/src/AppDelegate.h; sourceTree = SOURCE_ROOT; };
 		E3F876B819F1E59E00AD747C /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = OpenCodeEdit/src/AppDelegate.mm; sourceTree = SOURCE_ROOT; };
 		E3F876B919F1E59E00AD747C /* CodeDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CodeDocument.h; path = OpenCodeEdit/src/CodeDocument.h; sourceTree = SOURCE_ROOT; };
@@ -340,6 +342,7 @@
 			children = (
 				E3F876FA19F1E82500AD747C /* themes.plist */,
 				0370A6BD19F4478600B8677C /* languages.plist */,
+				E3C1A77419FC311500EBFCF6 /* keywords.plist */,
 			);
 			name = Data;
 			path = OpenCodeEdit/data;
@@ -470,6 +473,7 @@
 				E3F876F819F1E7DF00AD747C /* MainMenu.xib in Resources */,
 				E3356EC319F2FD0A00277BE7 /* FindBar.xib in Resources */,
 				E3F876DA19F1E5AC00AD747C /* increaseIndent.png in Resources */,
+				E3C1A77519FC311500EBFCF6 /* keywords.plist in Resources */,
 				E3F876DC19F1E5AC00AD747C /* open.png in Resources */,
 				E35921E619E9AFA900FFCC05 /* TabContents.xib in Resources */,
 				E3F876E219F1E5AC00AD747C /* saveall.png in Resources */,

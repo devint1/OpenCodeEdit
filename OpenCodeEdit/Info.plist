@@ -99,6 +99,61 @@
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>py</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>Python script</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.python-script</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CodeDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>xml</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>XML text</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.xml</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CodeDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>yaml</string>
+				<string>yml</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>YAML text</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>dyn.age81w2prru</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CodeDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
 			<array/>
 			<key>CFBundleTypeName</key>
 			<string>Other file</string>
