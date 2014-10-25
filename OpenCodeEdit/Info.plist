@@ -118,6 +118,24 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>mk</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>Makefile</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>dyn.age80442</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CodeDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>py</string>
 			</array>
 			<key>CFBundleTypeName</key>
@@ -179,6 +197,7 @@
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
 			<array>
+				<string>dyn.age8u</string>
 				<string>public.item</string>
 			</array>
 			<key>LSTypeIsPackage</key>

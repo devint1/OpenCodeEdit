@@ -9,5 +9,7 @@
 	<key>50</key>
 	<string>abstract arguments boolean break byte case catch char class const continue debugger default delete do double else enum eval export
 extends false final finally float for function goto if implements import in instanceof int interface let long native new null package private protected public return short static super switch synchronized this throw throws transient true try typeof var void volatile while with yield</string>
+	<key>87</key>
+	<string>and as assert break class continue def del elif else except exec finally for from global if import in is lambda not or pass print raise return try while with yield</string>
 </dict>
 </plist>

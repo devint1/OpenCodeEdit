@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6245"/>
     </dependencies>
@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="545" height="25"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
             <subviews>
-                <searchField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="52X-cn-637">
+                <searchField wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="52X-cn-637">
                     <rect key="frame" x="8" y="3" width="423" height="19"/>
                     <searchFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="Find" usesSingleLineMode="YES" bezelStyle="round" sendsWholeSearchString="YES" id="QPA-ji-JeH">
                         <font key="font" metaFont="smallSystem"/>
@@ -72,7 +72,7 @@
         </customView>
     </objects>
     <resources>
-        <image name="NSGoLeftTemplate" width="9" height="9"/>
-        <image name="NSGoRightTemplate" width="9" height="9"/>
+        <image name="NSGoLeftTemplate" width="9" height="12"/>
+        <image name="NSGoRightTemplate" width="9" height="12"/>
     </resources>
 </document>

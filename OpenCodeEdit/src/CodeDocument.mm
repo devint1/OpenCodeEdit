@@ -110,9 +110,23 @@
 }
 
 - (id)initWithContentsOfURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError {
-    [self setFileType:typeName];
-    [self setUpView];
-    self = [super initWithContentsOfURL:absoluteURL ofType:typeName error:outError];
+	NSString *oldType;
+	
+	// Makefiles are a special case
+	if([[[absoluteURL lastPathComponent] lowercaseString] isEqualToString:@"makefile"]) {
+		oldType = [NSString stringWithString:typeName];
+		typeName = @"dyn.age80442";
+	}
+	
+	[self setFileType:typeName];
+	[self setUpView];
+	
+	// If typeName changed change it back
+	if(oldType) {
+		typeName = [NSString stringWithString:oldType];
+	}
+	
+	self = [super initWithContentsOfURL:absoluteURL ofType:typeName error:outError];
 	return self;
 }
 
