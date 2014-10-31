@@ -12,6 +12,7 @@
 @interface CodeStyleElement : NSObject
 
 @property (readwrite) int styleId;
+@property (readwrite) NSString *description;
 @property (readwrite) NSString *fontName;
 @property (readwrite) int fontSize;
 @property (readwrite) BOOL bold;

@@ -7,11 +7,15 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "CodeStyler.h"
 
-@interface PreferencesController : NSWindowController {
-	
+@interface PreferencesController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate> {
+	NSMutableArray *languageNames;
+	CodeStyler *styler;
 }
 
 @property IBOutlet NSPopUpButtonCell *stylePopUp;
+@property IBOutlet NSPopUpButtonCell *styleSetPopUp;
+@property IBOutlet NSTableView *styleTable;
 
 @end

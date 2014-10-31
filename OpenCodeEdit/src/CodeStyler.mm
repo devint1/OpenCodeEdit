@@ -19,6 +19,7 @@
 #define EDITOR @"editor"
 #define FONT_NAME @"fontName"
 #define STYLE_ID @"styleId"
+#define DESCRIPTION @"description"
 #define FONT_SIZE @"fontSize"
 #define BOLD @"bold"
 #define ITALIC @"italic"
@@ -30,6 +31,7 @@
 #define RED @"red"
 #define GREEN @"green"
 #define BLUE @"blue"
+#define LANGUAGE_DESCRIPTIONS @"languageDescriptions"
 
 @implementation CodeStyler
 
@@ -43,8 +45,16 @@ static NSDictionary *properties;
     }
 }
 
-+(NSArray*)getStyleNames {
++(NSArray*)getThemeNames {
     return [properties allKeys];
+}
+
++(NSArray*)getSupportedLanguagesForTheme:(NSString*)theme {
+	return [[properties objectForKey:theme] allKeys];
+}
+
++(NSDictionary*)getLanguageDescriptionsForTheme:(NSString*)theme {
+	return [[properties objectForKey:theme] objectForKey:LANGUAGE_DESCRIPTIONS];
 }
 
 -(NSColor*)colorForDictionary:(NSDictionary*)dictionary {
@@ -59,6 +69,7 @@ static NSDictionary *properties;
 -(CodeStyleElement*)elementForDictionary:(NSDictionary*)dictionary {
 	CodeStyleElement *elem = [[CodeStyleElement alloc] init];
 	elem.styleId = [[dictionary objectForKey:STYLE_ID] intValue];
+	elem.description = [dictionary objectForKey:DESCRIPTION];
 	elem.fontName = [dictionary objectForKey:FONT_NAME];
 	elem.fontSize = [[dictionary objectForKey:FONT_SIZE] intValue];
 	elem.bold = [[dictionary objectForKey:BOLD] boolValue];
@@ -72,18 +83,24 @@ static NSDictionary *properties;
 }
 
 -(id)initWithTheme:(NSString*)theme language:(NSString*)language {
-    if(DEBUG_LANGUAGE)
-        NSLog(@"Styling for language: %@",language);
-    styleElements = [[NSMutableArray alloc] init];
-    NSDictionary *themeStyles = [properties objectForKey:theme];
-    NSDictionary *editorStyleDict = [themeStyles objectForKey:EDITOR];
-    editorStyle = [self elementForDictionary:editorStyleDict];
-	NSArray *commonStyles = [themeStyles objectForKey:COMMON];
+	return [self initWithTheme:theme language:language includeCommon:YES];
+}
+
+-(id)initWithTheme:(NSString*)theme language:(NSString*)language includeCommon:(BOOL)includeCommon {
+	if(DEBUG_LANGUAGE)
+		NSLog(@"Styling for language: %@",language);
+	styleElements = [[NSMutableArray alloc] init];
+	NSDictionary *themeStyles = [properties objectForKey:theme];
+	NSDictionary *editorStyleDict = [themeStyles objectForKey:EDITOR];
+	editorStyle = [self elementForDictionary:editorStyleDict];
 	int i;
-	for(i = 0; i < [commonStyles count]; ++i) {
-		NSDictionary *style = [commonStyles objectAtIndex:i];
-		CodeStyleElement *elem = [self elementForDictionary:style];
-		[styleElements addObject:elem];
+	if(includeCommon) {
+		NSArray *commonStyles = [themeStyles objectForKey:COMMON];
+		for(i = 0; i < [commonStyles count]; ++i) {
+			NSDictionary *style = [commonStyles objectAtIndex:i];
+			CodeStyleElement *elem = [self elementForDictionary:style];
+			[styleElements addObject:elem];
+		}
 	}
 	NSArray *languageStyles = [themeStyles objectForKey:language];
 	for(i = 0; i < [languageStyles count]; ++i) {
@@ -91,14 +108,23 @@ static NSDictionary *properties;
 		CodeStyleElement *elem = [self elementForDictionary:style];
 		[styleElements addObject:elem];
 	}
-    [self setSubStyles:themeStyles language:language];
+	[self setSubStyles:themeStyles language:language includeCommon:includeCommon];
 	return self;
 }
 
--(void)setSubStyles:(NSDictionary*)themeStyles language:(NSString*)language {
+-(NSArray*)getStyles {
+	return styleElements;
+}
+
+-(CodeStyleElement*)getEditorStyle {
+	return editorStyle;
+}
+
+-(void)setSubStyles:(NSDictionary*)themeStyles language:(NSString*)language includeCommon:(BOOL)includeCommon {
     if([language isEqualToString:@"hypertext"]) {
         NSMutableArray *subStyles = [themeStyles objectForKey:@"cpp"];
-        [subStyles addObjectsFromArray:[themeStyles objectForKey:COMMON]];
+		if(includeCommon)
+			[subStyles addObjectsFromArray:[themeStyles objectForKey:COMMON]];
         for(int i = 0; i < [subStyles count]; ++i) {
             NSDictionary *style = [subStyles objectAtIndex:i];
             CodeStyleElement *elem = [self elementForDictionary:style];

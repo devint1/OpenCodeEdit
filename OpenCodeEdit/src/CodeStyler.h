@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <Scintilla/ScintillaView.h>
 #import "CodeStyleElement.h"
 
 @interface CodeStyler : NSObject {
@@ -14,8 +15,13 @@
 	CodeStyleElement *editorStyle;
 }
 
-+(NSArray*)getStyleNames;
++(NSArray*)getThemeNames;
++(NSArray*)getSupportedLanguagesForTheme:(NSString*)theme;
++(NSDictionary*)getLanguageDescriptionsForTheme:(NSString*)theme;
 -(id)initWithTheme:(NSString*)theme language:(NSString*)language;
+-(id)initWithTheme:(NSString*)theme language:(NSString*)language includeCommon:(BOOL)includeCommon;
+-(NSArray*)getStyles;
+-(CodeStyleElement*)getEditorStyle;
 -(void)stylizeScintillaView:(ScintillaView*)sv;
 
 @end
