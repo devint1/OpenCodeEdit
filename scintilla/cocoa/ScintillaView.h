@@ -112,9 +112,8 @@ extern NSString *const SCIUpdateUINotification;
   // Area to display additional controls (e.g. zoom info, caret position, status info).
   NSView <InfoBarCommunicator>* mInfoBar;
   BOOL mInfoBarAtTop;
-
-  // MODIFIED: Set delegate to __weak (fixes crash on load)
-  __weak id<ScintillaNotificationProtocol> mDelegate;
+	
+  id<ScintillaNotificationProtocol> mDelegate;
 }
 
 @property (nonatomic, readonly) Scintilla::ScintillaCocoa* backend;

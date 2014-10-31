@@ -112,7 +112,12 @@ Font::~Font()
 
 //--------------------------------------------------------------------------------------------------
 
+// MODIFIED Workaround for null pointer access
 static int FontCharacterSet(Font &f) {
+    if(!f.GetID()) {
+        NSLog(@"FontCharacterSet(Font&): WARNING: FID is null, returning SC_CHARSET_DEFAULT");
+        return SC_CHARSET_DEFAULT;
+    }
 	return reinterpret_cast<QuartzTextStyle *>(f.GetID())->getCharacterSet();
 }
 

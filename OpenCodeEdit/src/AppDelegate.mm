@@ -28,8 +28,10 @@ static NSDictionary *defaultValues() {
 	if(!browser) {
 		browser = [CTBrowser browser];
 	}
-	if ([[self documents] count] < 1) {
+	if (!browser.windowController) {
 		browser.windowController = [[CTBrowserWindowController alloc] initWithBrowser:browser];
+	}
+	if(![[browser.windowController window] isVisible]) {
 		[browser.windowController showWindow:self];
 	}
 }

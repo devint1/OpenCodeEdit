@@ -95,17 +95,17 @@
 
 #pragma mark Initializers
 -(id)init {
-    self = [super init];
     if(!_sv) {
         [self setFileType:@"public.text"];
         [self setUpView];
     }
+	self = [super init];
 	return self;
 }
 
 -(id)initWithBaseTabContents:(CTTabContents*)baseContents {
-	if (!(self = [super initWithBaseTabContents:baseContents])) return nil;
 	[self setUpView];
+	if (!(self = [super initWithBaseTabContents:baseContents])) return nil;
 	return self;
 }
 

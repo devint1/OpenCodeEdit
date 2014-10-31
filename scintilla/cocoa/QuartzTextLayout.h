@@ -49,8 +49,18 @@ public:
             return;
 
 	        stringLength = CFStringGetLength(str);
-
-		CFMutableDictionaryRef stringAttribs = r.getCTStyle();
+        
+        // MODIFIED: Workaround for null pointer access
+        CFMutableDictionaryRef stringAttribs;
+        if(&r) {
+            stringAttribs = r.getCTStyle();
+        }
+        else {
+            NSLog(@"setText(const UInt8*, size_t, CFStringEncoding, const QuartzTextStyle&): WARNING: Text style is null, no string attributes set");
+            stringAttribs = CFDictionaryCreateMutable(kCFAllocatorDefault, 2,
+                                                      &kCFTypeDictionaryKeyCallBacks,
+                                                      &kCFTypeDictionaryValueCallBacks);;
+        }
 
 		if (mString != NULL)
 			CFRelease(mString);

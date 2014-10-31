@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		031FF10619FDEA6A00183866 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 031FF10519FDEA6A00183866 /* Images.xcassets */; };
 		0370A6BE19F4478600B8677C /* languages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0370A6BD19F4478600B8677C /* languages.plist */; };
 		E3356EC119F2FCDB00277BE7 /* FindBarController.mm in Sources */ = {isa = PBXBuildFile; fileRef = E3356EC019F2FCDB00277BE7 /* FindBarController.mm */; };
 		E3356EC319F2FD0A00277BE7 /* FindBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3356EC219F2FD0A00277BE7 /* FindBar.xib */; };
@@ -115,6 +116,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		031FF10519FDEA6A00183866 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = OpenCodeEdit/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		0370A6BD19F4478600B8677C /* languages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = languages.plist; sourceTree = "<group>"; };
 		03F60C9119F4810000F90A84 /* UserDefaultsKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserDefaultsKeys.h; path = OpenCodeEdit/src/UserDefaultsKeys.h; sourceTree = SOURCE_ROOT; };
 		E31B6E8B19E9AE1100FAF947 /* OpenCodeEdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenCodeEdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,6 +220,7 @@
 				E3F876EA19F1E5E400AD747C /* Headers */,
 				E3F876F919F1E82500AD747C /* Data */,
 				E35921FD19E9B16800FFCC05 /* Interface */,
+				031FF10519FDEA6A00183866 /* Images.xcassets */,
 				E31B6E8E19E9AE1100FAF947 /* Supporting Files */,
 			);
 			name = OpenCodeEdit;
@@ -474,6 +477,7 @@
 				E3356EC319F2FD0A00277BE7 /* FindBar.xib in Resources */,
 				E3F876DA19F1E5AC00AD747C /* increaseIndent.png in Resources */,
 				E3C1A77519FC311500EBFCF6 /* keywords.plist in Resources */,
+				031FF10619FDEA6A00183866 /* Images.xcassets in Resources */,
 				E3F876DC19F1E5AC00AD747C /* open.png in Resources */,
 				E35921E619E9AFA900FFCC05 /* TabContents.xib in Resources */,
 				E3F876E219F1E5AC00AD747C /* saveall.png in Resources */,
