@@ -13,7 +13,7 @@
 @class CodeDocument;
 
 @interface ScintillaManager : NSObject <ScintillaNotificationProtocol> {
-    CodeDocument *document;
+    __weak CodeDocument *document;
     ScintillaView *sv;
 }
 
