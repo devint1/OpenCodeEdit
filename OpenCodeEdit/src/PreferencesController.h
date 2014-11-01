@@ -12,6 +12,7 @@
 @interface PreferencesController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate> {
 	NSMutableArray *languageNames;
 	CodeStyler *styler;
+	BOOL tableItemSelected;
 }
 
 @property IBOutlet NSPopUpButtonCell *themePopUp;

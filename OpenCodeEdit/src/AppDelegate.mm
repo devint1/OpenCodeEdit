@@ -13,6 +13,7 @@ static NSDictionary *defaultValues() {
 	if(!defaults) {
 		defaults = [[NSDictionary alloc] initWithObjectsAndKeys:
 					@"Default", UD_THEME,
+					@{}, UD_STYLE_OVERRIDES,
 					nil
 					];
 	}

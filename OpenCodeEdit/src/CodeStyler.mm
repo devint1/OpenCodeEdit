@@ -8,6 +8,7 @@
 
 #import <Scintilla/ScintillaView.h>
 #import "CodeStyler.h"
+#import "UserDefaultsKeys.h"
 
 #pragma mark Debug flags
 
@@ -75,11 +76,41 @@ static NSDictionary *properties;
 	elem.bold = [[dictionary objectForKey:BOLD] boolValue];
 	elem.italic = [[dictionary objectForKey:ITALIC] boolValue];
 	elem.underline = [[dictionary objectForKey:UNDERLINE] boolValue];
+	elem.eolFilled = [[dictionary objectForKey:EOL_FILLED] boolValue];
 	elem.foregroundColor = [self colorForDictionary:[dictionary objectForKey:FOREGROUND_COLOR]];
 	elem.backgroundColor = [self colorForDictionary:[dictionary objectForKey:BACKGROUND_COLOR]];
-	elem.eolFilled = [[dictionary objectForKey:EOL_FILLED] boolValue];
 	elem.caretForegroundColor = [self colorForDictionary:[dictionary objectForKey:CARET_FOREGROUND_COLOR]];
 	return elem;
+}
+
+-(void)applyOverrides:(NSDictionary*)overrides toStyleElement:(CodeStyleElement*)elem {
+	NSString *description = [overrides objectForKey:DESCRIPTION];
+	NSString *fontName = [overrides objectForKey:FONT_NAME];
+	NSNumber *fontSize = [overrides objectForKey:FONT_SIZE];
+	NSNumber *bold = [overrides objectForKey:BOLD];
+	NSNumber *italic = [overrides objectForKey:ITALIC];
+	NSNumber *underline = [overrides objectForKey:UNDERLINE];
+	NSNumber *eolFilled = [overrides objectForKey:EOL_FILLED];
+	NSData *foregroundColorData = [overrides objectForKey:FOREGROUND_COLOR];
+	NSData *backgroundColorData = [overrides objectForKey:BACKGROUND_COLOR];
+	if(description)
+		elem.description = description;
+	if(fontName)
+		elem.fontName = fontName;
+	if(fontSize)
+		elem.fontSize = [fontSize intValue];
+	if(bold)
+		elem.bold = [bold boolValue];
+	if(italic)
+		elem.italic = [italic boolValue];
+	if(underline)
+		elem.underline = [underline boolValue];
+	if(eolFilled)
+		elem.eolFilled = [eolFilled boolValue];
+	if (foregroundColorData)
+		elem.foregroundColor = (NSColor *)[NSUnarchiver unarchiveObjectWithData:foregroundColorData];
+	if (backgroundColorData)
+		elem.backgroundColor = (NSColor *)[NSUnarchiver unarchiveObjectWithData:backgroundColorData];
 }
 
 -(id)initWithTheme:(NSString*)theme language:(NSString*)language {
@@ -92,20 +123,31 @@ static NSDictionary *properties;
 	styleElements = [[NSMutableArray alloc] init];
 	NSDictionary *themeStyles = [properties objectForKey:theme];
 	NSDictionary *editorStyleDict = [themeStyles objectForKey:EDITOR];
+	NSDictionary *overrides = [[NSUserDefaults standardUserDefaults] objectForKey:UD_STYLE_OVERRIDES];
 	editorStyle = [self elementForDictionary:editorStyleDict];
 	int i;
 	if(includeCommon) {
 		NSArray *commonStyles = [themeStyles objectForKey:COMMON];
 		for(i = 0; i < [commonStyles count]; ++i) {
 			NSDictionary *style = [commonStyles objectAtIndex:i];
+			NSString *styleId = [NSString stringWithFormat:@"%ld",[[style objectForKey:STYLE_ID] integerValue]];
+			NSDictionary *overrideStyle = [[[overrides objectForKey:theme] objectForKey:language] objectForKey:styleId];
 			CodeStyleElement *elem = [self elementForDictionary:style];
+			if(overrideStyle) {
+				[self applyOverrides:overrideStyle toStyleElement:elem];
+			}
 			[styleElements addObject:elem];
 		}
 	}
 	NSArray *languageStyles = [themeStyles objectForKey:language];
 	for(i = 0; i < [languageStyles count]; ++i) {
 		NSDictionary *style = [languageStyles objectAtIndex:i];
+		NSString *styleId = [NSString stringWithFormat:@"%ld",[[style objectForKey:STYLE_ID] integerValue]];
+		NSDictionary *overrideStyle = [[[overrides objectForKey:theme] objectForKey:language] objectForKey:styleId];
 		CodeStyleElement *elem = [self elementForDictionary:style];
+		if(overrideStyle) {
+			[self applyOverrides:overrideStyle toStyleElement:elem];
+		}
 		[styleElements addObject:elem];
 	}
 	if(includeCommon)

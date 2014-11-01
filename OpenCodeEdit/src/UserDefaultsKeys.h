@@ -10,5 +10,6 @@
 #define OpenCodeEdit_UserDefaultsKeys_h
 
 #define UD_THEME @"theme"
+#define UD_STYLE_OVERRIDES @"styleOverrides"
 
 #endif

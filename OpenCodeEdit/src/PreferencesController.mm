@@ -15,9 +15,12 @@
 
 @implementation PreferencesController
 
+#pragma mark Loading
+
 -(void)windowDidLoad {
 	languageNames = [[NSMutableArray alloc] init];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(defaultsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
+	tableItemSelected = NO;
+	[self registerObservers];
 	NSArray *styleNames = [CodeStyler getThemeNames];
 	[_themePopUp addItemsWithTitles:styleNames];
 	[_themePopUp selectItemWithTitle:[[NSUserDefaults standardUserDefaults] stringForKey:UD_THEME]];
@@ -41,17 +44,34 @@
 	}
 }
 
+#pragma mark IBAction methods
+
 -(IBAction)themeChanged:(id)sender {
 	[self populateStyleSets];
 	
 	// TODO: Remove this later
 	[_styleSetPopUp selectItemAtIndex:1];
 	
+	tableItemSelected = NO;
 	[self populateStyles];
 }
 
 -(IBAction)styleSetChanged:(id)sender {
+	tableItemSelected = NO;
 	[self populateStyles];
+}
+
+#pragma mark Observer methods
+
+-(void)registerObservers {
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(defaultsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
+	[self addObserver:self forKeyPath:@"foregroundColor" options:NSKeyValueObservingOptionNew context:nil];
+	[self addObserver:self forKeyPath:@"backgroundColor" options:NSKeyValueObservingOptionNew context:nil];
+	[self addObserver:self forKeyPath:@"fontName" options:NSKeyValueObservingOptionNew context:nil];
+	[self addObserver:self forKeyPath:@"fontSize" options:NSKeyValueObservingOptionNew context:nil];
+	[self addObserver:self forKeyPath:@"bold" options:NSKeyValueObservingOptionNew context:nil];
+	[self addObserver:self forKeyPath:@"italic" options:NSKeyValueObservingOptionNew context:nil];
+	[self addObserver:self forKeyPath:@"underline" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 - (void)defaultsChanged:(NSNotification *)notification {
@@ -63,6 +83,64 @@
 		[document applyStyle];
 	}
 }
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+	if(!tableItemSelected)
+		return;
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	NSMutableDictionary *overrides = [[NSMutableDictionary alloc] init];
+	[overrides addEntriesFromDictionary:[userDefaults dictionaryForKey:UD_STYLE_OVERRIDES]];
+	if(!overrides) {
+		NSLog(@"ERROR: Could not load style overrides, default may not have been registered");
+		return;
+	}
+	CodeStyleElement *selectedElem = [[styler getStyles] objectAtIndex:[_styleTable selectedRow]];
+	NSString *theme = [[_themePopUp selectedItem] title];
+	NSString *language = [languageNames objectAtIndex:[_styleSetPopUp indexOfSelectedItem]];
+	NSString *styleId = [[NSNumber numberWithInt:selectedElem.styleId] stringValue];
+	
+	// Theme overrides
+	NSMutableDictionary *themeOverrides = [[NSMutableDictionary alloc] init];
+	[themeOverrides addEntriesFromDictionary:[overrides objectForKey:theme]];
+	[overrides setObject:themeOverrides forKey:theme];
+	
+	// Language overrides
+	NSMutableDictionary *languageOverrides = [[NSMutableDictionary alloc] init];
+	[languageOverrides addEntriesFromDictionary:[themeOverrides objectForKey:language]];
+	[themeOverrides setObject:languageOverrides forKey:language];
+	
+	// Style overrides
+	NSMutableDictionary *styleOverrides = [[NSMutableDictionary alloc] init];
+	[styleOverrides addEntriesFromDictionary:[languageOverrides objectForKey:styleId]];
+	[languageOverrides setObject:styleOverrides forKey:styleId];
+	
+	if ([keyPath isEqualToString:@"foregroundColor"]) {
+		NSData *colorData = [NSArchiver archivedDataWithRootObject:_foregroundColor];
+		[styleOverrides setObject:colorData forKey:keyPath];
+	} else if ([keyPath isEqualToString:@"backgroundColor"]) {
+		NSData *colorData = [NSArchiver archivedDataWithRootObject:_backgroundColor];
+		[styleOverrides setObject:colorData forKey:keyPath];
+	} else if ([keyPath isEqualToString:@"fontName"]) {
+		[styleOverrides setObject:_fontName forKey:keyPath];
+	} else if ([keyPath isEqualToString:@"fontSize"]) {
+		[styleOverrides setObject:[NSNumber numberWithInteger:_fontSize] forKey:keyPath];
+	} else if ([keyPath isEqualToString:@"bold"]) {
+		[styleOverrides setObject:[NSNumber numberWithBool:_bold] forKey:keyPath];
+	} else if ([keyPath isEqualToString:@"italic"]) {
+		[styleOverrides setObject:[NSNumber numberWithBool:_italic] forKey:keyPath];
+	} else if ([keyPath isEqualToString:@"underline"]) {
+		[styleOverrides setObject:[NSNumber numberWithBool:_underline] forKey:keyPath];
+	} else {
+		NSLog(@"WARNING: Unknown key path: %@",keyPath);
+	}
+	[userDefaults setObject:overrides forKey:UD_STYLE_OVERRIDES];
+	NSInteger selectedRow = [_styleTable selectedRow];
+	[self populateStyles];
+	NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:selectedRow];
+	[_styleTable selectRowIndexes:indexSet byExtendingSelection:NO];
+}
+
+#pragma mark Menu population
 
 -(void)populateStyleSets {
 	[_styleSetPopUp removeAllItems];
@@ -93,11 +171,13 @@
 }
 
 -(void)populateStyles {
-	NSInteger styleSetIndex = [_styleSetPopUp indexOfItem:[_styleSetPopUp selectedItem]];
+	NSInteger styleSetIndex = [_styleSetPopUp indexOfSelectedItem];
 	styler = [[CodeStyler alloc] initWithTheme:[[_themePopUp selectedItem] title] language:[languageNames objectAtIndex:styleSetIndex] includeCommon:NO];
 	[_styleTable setBackgroundColor:[styler getEditorStyle].backgroundColor];
 	[_styleTable reloadData];
 }
+
+#pragma mark Style table view methods
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView {
 	return [[styler getStyles] count];
@@ -163,7 +243,8 @@
 	NSString *fontName = elem.fontName ? elem.fontName : editorStyle.fontName;
 	int fontSize = elem.fontSize ? elem.fontSize : editorStyle.fontSize;
 	
-	//[self setValue:foregroundColor forKey:@"foregroundColor"];
+	tableItemSelected = NO;
+	
 	[self setForegroundColor:foregroundColor];
 	[self setBackgroundColor:backgroundColor];
 	[self setFontSize:fontSize];
@@ -171,6 +252,8 @@
 	[self setItalic:italic];
 	[self setUnderline:underline];
 	[self setFontName:fontName];
+
+	tableItemSelected = YES;
 }
 
 @end
