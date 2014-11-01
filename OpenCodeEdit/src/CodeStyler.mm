@@ -108,7 +108,8 @@ static NSDictionary *properties;
 		CodeStyleElement *elem = [self elementForDictionary:style];
 		[styleElements addObject:elem];
 	}
-	[self setSubStyles:themeStyles language:language includeCommon:includeCommon];
+	if(includeCommon)
+		[self setSubStyles:themeStyles language:language includeCommon:includeCommon];
 	return self;
 }
 
@@ -122,7 +123,7 @@ static NSDictionary *properties;
 
 -(void)setSubStyles:(NSDictionary*)themeStyles language:(NSString*)language includeCommon:(BOOL)includeCommon {
     if([language isEqualToString:@"hypertext"]) {
-        NSMutableArray *subStyles = [themeStyles objectForKey:@"cpp"];
+        NSMutableArray *subStyles = [[NSMutableArray alloc] initWithArray:[themeStyles objectForKey:@"cpp"]];
 		if(includeCommon)
 			[subStyles addObjectsFromArray:[themeStyles objectForKey:COMMON]];
         for(int i = 0; i < [subStyles count]; ++i) {

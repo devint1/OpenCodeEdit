@@ -6,7 +6,7 @@
 
 @implementation AppDelegate
 
-CTBrowser *browser;
+static CTBrowser *browser;
 
 static NSDictionary *defaultValues() {
     static NSDictionary *defaults = nil;
@@ -64,7 +64,7 @@ static NSDictionary *defaultValues() {
 	if(DEBUG_UTI)
 		NSLog(@"UTI: %@",fileUTI);
 	BOOL documentAlreadyOpen = YES;
-	__block CodeDocument *document;
+	__block __strong CodeDocument *document;
 	if([self documentForURL:url] == nil) {
 		documentAlreadyOpen = NO;
 		if ([CodeDocument canConcurrentlyReadDocumentsOfType:fileUTI]) {

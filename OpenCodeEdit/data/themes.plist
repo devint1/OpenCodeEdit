@@ -496,6 +496,16 @@
 		<key>python</key>
 		<array>
 			<dict>
+				<key>bold</key>
+				<true/>
+				<key>description</key>
+				<string>Class names</string>
+				<key>styleId</key>
+				<integer>8</integer>
+			</dict>
+			<dict>
+				<key>description</key>
+				<string>Word matches</string>
 				<key>styleId</key>
 				<integer>14</integer>
 				<key>backgroundColor</key>
@@ -509,6 +519,8 @@
 				</dict>
 			</dict>
 			<dict>
+				<key>description</key>
+				<string>Characters</string>
 				<key>styleId</key>
 				<integer>4</integer>
 				<key>foregroundColor</key>
@@ -522,6 +534,8 @@
 				</dict>
 			</dict>
 			<dict>
+				<key>description</key>
+				<string>Numbers</string>
 				<key>styleId</key>
 				<integer>2</integer>
 				<key>foregroundColor</key>
@@ -535,6 +549,8 @@
 				</dict>
 			</dict>
 			<dict>
+				<key>description</key>
+				<string>Definition names</string>
 				<key>styleId</key>
 				<integer>9</integer>
 				<key>bold</key>
@@ -550,6 +566,8 @@
 				</dict>
 			</dict>
 			<dict>
+				<key>description</key>
+				<string>Strings</string>
 				<key>styleId</key>
 				<integer>3</integer>
 				<key>foregroundColor</key>
@@ -563,6 +581,8 @@
 				</dict>
 			</dict>
 			<dict>
+				<key>description</key>
+				<string>Triple double-quoted strings</string>
 				<key>styleId</key>
 				<integer>7</integer>
 				<key>foregroundColor</key>
@@ -576,6 +596,8 @@
 				</dict>
 			</dict>
 			<dict>
+				<key>description</key>
+				<string>Keywords</string>
 				<key>styleId</key>
 				<integer>5</integer>
 				<key>bold</key>
@@ -591,6 +613,8 @@
 				</dict>
 			</dict>
 			<dict>
+				<key>description</key>
+				<string>Inline comments</string>
 				<key>styleId</key>
 				<integer>1</integer>
 				<key>foregroundColor</key>
@@ -783,6 +807,23 @@
 	</dict>
 	<key>Dusk</key>
 	<dict>
+		<key>languageDescriptions</key>
+		<dict>
+			<key>cpp</key>
+			<string>C, C++, Java, and JavaScript</string>
+			<key>css</key>
+			<string>CSS</string>
+			<key>hypertext</key>
+			<string>HTML</string>
+			<key>xml</key>
+			<string>XML</string>
+			<key>python</key>
+			<string>Python</string>
+			<key>yaml</key>
+			<string>YAML</string>
+			<key>makefile</key>
+			<string>Makefile</string>
+		</dict>
 		<key>editor</key>
 		<dict>
 			<key>fontSize</key>
@@ -955,6 +996,8 @@
 		<key>cpp</key>
 		<array>
 			<dict>
+				<key>description</key>
+				<string>Strings</string>
 				<key>styleId</key>
 				<integer>6</integer>
 				<key>foregroundColor</key>
@@ -968,6 +1011,8 @@
 				</dict>
 			</dict>
 			<dict>
+				<key>description</key>
+				<string>Word matches</string>
 				<key>styleId</key>
 				<integer>16</integer>
 				<key>backgroundColor</key>
@@ -981,6 +1026,8 @@
 				</dict>
 			</dict>
 			<dict>
+				<key>description</key>
+				<string>Numbers</string>
 				<key>styleId</key>
 				<integer>4</integer>
 				<key>foregroundColor</key>
@@ -994,6 +1041,8 @@
 				</dict>
 			</dict>
 			<dict>
+				<key>description</key>
+				<string>Characters</string>
 				<key>styleId</key>
 				<integer>7</integer>
 				<key>foregroundColor</key>
@@ -1007,6 +1056,8 @@
 				</dict>
 			</dict>
 			<dict>
+				<key>description</key>
+				<string>Keywords</string>
 				<key>styleId</key>
 				<integer>5</integer>
 				<key>bold</key>
@@ -1022,6 +1073,8 @@
 				</dict>
 			</dict>
 			<dict>
+				<key>description</key>
+				<string>Doc comments</string>
 				<key>foregroundColor</key>
 				<dict>
 					<key>red</key>
@@ -1035,6 +1088,8 @@
 				<integer>3</integer>
 			</dict>
 			<dict>
+				<key>description</key>
+				<string>Block comments</string>
 				<key>styleId</key>
 				<integer>1</integer>
 				<key>foregroundColor</key>
@@ -1048,6 +1103,8 @@
 				</dict>
 			</dict>
 			<dict>
+				<key>description</key>
+				<string>Inline comments</string>
 				<key>foregroundColor</key>
 				<dict>
 					<key>red</key>
@@ -1061,6 +1118,8 @@
 				<integer>2</integer>
 			</dict>
 			<dict>
+				<key>description</key>
+				<string>Preprocessor</string>
 				<key>styleId</key>
 				<integer>9</integer>
 				<key>foregroundColor</key>
@@ -1238,6 +1297,25 @@
 		<key>python</key>
 		<array>
 			<dict>
+				<key>bold</key>
+				<true/>
+				<key>description</key>
+				<string>Class names</string>
+				<key>styleId</key>
+				<integer>8</integer>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<real>0.07000000000000001</real>
+					<key>green</key>
+					<real>0.5649999999999999</real>
+					<key>blue</key>
+					<real>0.765</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>description</key>
+				<string>Word matches</string>
 				<key>styleId</key>
 				<integer>14</integer>
 				<key>backgroundColor</key>
@@ -1251,6 +1329,8 @@
 				</dict>
 			</dict>
 			<dict>
+				<key>description</key>
+				<string>Characters</string>
 				<key>styleId</key>
 				<integer>4</integer>
 				<key>foregroundColor</key>
@@ -1264,6 +1344,8 @@
 				</dict>
 			</dict>
 			<dict>
+				<key>description</key>
+				<string>Numbers</string>
 				<key>styleId</key>
 				<integer>2</integer>
 				<key>foregroundColor</key>
@@ -1277,6 +1359,8 @@
 				</dict>
 			</dict>
 			<dict>
+				<key>description</key>
+				<string>Definition names</string>
 				<key>styleId</key>
 				<integer>9</integer>
 				<key>bold</key>
@@ -1292,6 +1376,8 @@
 				</dict>
 			</dict>
 			<dict>
+				<key>description</key>
+				<string>Strings</string>
 				<key>styleId</key>
 				<integer>3</integer>
 				<key>foregroundColor</key>
@@ -1305,6 +1391,8 @@
 				</dict>
 			</dict>
 			<dict>
+				<key>description</key>
+				<string>Triple double-quoted strings</string>
 				<key>styleId</key>
 				<integer>7</integer>
 				<key>foregroundColor</key>
@@ -1318,6 +1406,8 @@
 				</dict>
 			</dict>
 			<dict>
+				<key>description</key>
+				<string>Keywords</string>
 				<key>styleId</key>
 				<integer>5</integer>
 				<key>bold</key>
@@ -1333,6 +1423,8 @@
 				</dict>
 			</dict>
 			<dict>
+				<key>description</key>
+				<string>Inline comments</string>
 				<key>styleId</key>
 				<integer>1</integer>
 				<key>foregroundColor</key>
