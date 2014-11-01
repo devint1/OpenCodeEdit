@@ -9,19 +9,19 @@
 static CTBrowser *browser;
 
 static NSDictionary *defaultValues() {
-    static NSDictionary *defaults = nil;
-    if(!defaults) {
-        defaults = [[NSDictionary alloc] initWithObjectsAndKeys:
-                    @"Default", UD_THEME,
-                    nil
-                    ];
-    }
-    return defaults;
+	static NSDictionary *defaults = nil;
+	if(!defaults) {
+		defaults = [[NSDictionary alloc] initWithObjectsAndKeys:
+					@"Default", UD_THEME,
+					nil
+					];
+	}
+	return defaults;
 }
 
 +(void)initialize {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults registerDefaults:defaultValues()];
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	[userDefaults registerDefaults:defaultValues()];
 }
 
 - (void)newBrowserWindow {
@@ -41,21 +41,43 @@ static NSDictionary *defaultValues() {
 	return document;
 }
 
-// TODO: Currently this just sets the active tab; it will not re-load the document
+-(id)makeDocumentForURL:(NSURL *)urlOrNil withContentsOfURL:(NSURL *)contentsURL ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError	{
+	CodeDocument *document = [[CodeDocument alloc] initWithContentsOfURL:contentsURL ofType:typeName error:outError];
+	return document;
+}
+
 - (void)reopenDocumentForURL:(NSURL *)urlOrNil withContentsOfURL:(NSURL *)contentsURL display:(BOOL)displayDocument completionHandler:(void (^)(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error))completionHandler {
-	CodeDocument *document = [self documentForURL:urlOrNil];
-	int tabIndex = [browser indexOfTabContents:document];
-	[browser selectTabAtIndex:tabIndex];
-	[super reopenDocumentForURL:urlOrNil withContentsOfURL:contentsURL display:displayDocument completionHandler:completionHandler];
+	CFStringRef pathExtension = (__bridge CFStringRef)[[urlOrNil lastPathComponent] pathExtension];
+	NSString *fileUTI = (__bridge NSString*)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension, nil);
+	if(DEBUG_UTI)
+		NSLog(@"UTI: %@",fileUTI);
+	__block __strong CodeDocument *document = [self documentForURL:urlOrNil];
+	BOOL documentAlreadyOpen = document != nil;
+	if ([CodeDocument canConcurrentlyReadDocumentsOfType:fileUTI]) {
+		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+			document = [self makeDocumentForURL:urlOrNil withContentsOfURL:contentsURL ofType:fileUTI error:nil];
+			dispatch_sync(dispatch_get_main_queue(), ^{
+				[self finishOpenDocument:document documentAlreadyOpen:documentAlreadyOpen display:displayDocument url:urlOrNil completionHandler:completionHandler];
+			});
+		});
+	} else {
+		document = [self makeDocumentForURL:urlOrNil withContentsOfURL:contentsURL ofType:fileUTI error:nil];
+		[self finishOpenDocument:document documentAlreadyOpen:documentAlreadyOpen display:displayDocument url:urlOrNil completionHandler:completionHandler];
+	}
 }
 
 -(void)finishOpenDocument:(CodeDocument*)document documentAlreadyOpen:(BOOL)documentOpen display:(BOOL)displayDocument url:(NSURL *)url completionHandler:(void (^)(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error))completionHandler {
-	[self newBrowserWindow];
-	[document setDelegate:self];
-	[self addDocument:document];
-	[document addWindowController:browser.windowController];
-	[browser addTabContents:document];
-	completionHandler(document, documentOpen, nil);
+	if(documentOpen) {
+		int tabIndex = [browser indexOfTabContents:document];
+		[browser selectTabAtIndex:tabIndex];
+	} else {
+		[self newBrowserWindow];
+		[document setDelegate:self];
+		[self addDocument:document];
+		[document addWindowController:browser.windowController];
+		[browser addTabContents:document];
+		completionHandler(document, documentOpen, nil);
+	}
 }
 
 - (void)openDocumentWithContentsOfURL:(NSURL *)url display:(BOOL)displayDocument completionHandler:(void (^)(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error))completionHandler {
