@@ -64,6 +64,15 @@
 		<key>css</key>
 		<array>
 			<dict>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<real>0.5</real>
+					<key>green</key>
+					<integer>0</integer>
+					<key>blue</key>
+					<real>0.5</real>
+				</dict>
 				<key>description</key>
 				<string>Attributes</string>
 				<key>bold</key>
@@ -1012,6 +1021,15 @@
 		<key>css</key>
 		<array>
 			<dict>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<real>0.87</real>
+					<key>green</key>
+					<real>0.156</real>
+					<key>blue</key>
+					<real>0.4</real>
+				</dict>
 				<key>description</key>
 				<string>Attributes</string>
 				<key>bold</key>
@@ -1371,6 +1389,36 @@
 				<string>Preprocessor</string>
 				<key>styleId</key>
 				<integer>9</integer>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<real>0.9</real>
+					<key>green</key>
+					<real>0.73</real>
+					<key>blue</key>
+					<real>0.42</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>description</key>
+				<string>Doc comment keywords</string>
+				<key>styleId</key>
+				<integer>17</integer>
+				<key>foregroundColor</key>
+				<dict>
+					<key>red</key>
+					<real>0.9</real>
+					<key>green</key>
+					<real>0.73</real>
+					<key>blue</key>
+					<real>0.42</real>
+				</dict>
+			</dict>
+			<dict>
+				<key>description</key>
+				<string>Doc comment unknown keywords</string>
+				<key>styleId</key>
+				<integer>18</integer>
 				<key>foregroundColor</key>
 				<dict>
 					<key>red</key>
