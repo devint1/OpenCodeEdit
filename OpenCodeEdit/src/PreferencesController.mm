@@ -61,6 +61,61 @@
 	[self populateStyles];
 }
 
+-(IBAction)resetStyle:(id)sender {
+	NSAlert *alert = [[NSAlert alloc] init];
+	[alert addButtonWithTitle:@"OK"];
+	[alert addButtonWithTitle:@"Cancel"];
+	[alert setMessageText:@"Reset style to defaults?"];
+	[alert setInformativeText:@"This action cannot be undone."];
+	[alert setAlertStyle:NSWarningAlertStyle];
+	[alert beginSheetModalForWindow:[self window] completionHandler:^(NSModalResponse response) {
+		if(response == 1000) {
+			NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+			NSMutableDictionary *overrides = [[NSMutableDictionary alloc] init];
+			if(!overrides) {
+				NSLog(@"ERROR: Could not load style overrides, default may not have been registered");
+				return;
+			}
+			CodeStyleElement *selectedElem = [[styler getStyles] objectAtIndex:[_styleTable selectedRow]];
+			NSString *styleId = [[NSNumber numberWithInt:selectedElem.styleId] stringValue];
+			[overrides addEntriesFromDictionary:[userDefaults dictionaryForKey:UD_STYLE_OVERRIDES]];
+			NSMutableDictionary *languageStyles = [self mutableLanguageDictionaryForOverrideDictionary:overrides];
+			[languageStyles removeObjectForKey:styleId];
+			[userDefaults setObject:overrides forKey:UD_STYLE_OVERRIDES];
+			NSInteger selectedRow = [_styleTable selectedRow];
+			[self populateStyles];
+			NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:selectedRow];
+			[_styleTable selectRowIndexes:indexSet byExtendingSelection:NO];
+		}
+	}];
+}
+
+-(IBAction)resetTheme:(id)sender {
+	NSAlert *alert = [[NSAlert alloc] init];
+	[alert addButtonWithTitle:@"OK"];
+	[alert addButtonWithTitle:@"Cancel"];
+	[alert setMessageText:@"Reset theme to defaults?"];
+	[alert setInformativeText:@"This will reset all styles for the selected theme to their default values. This cannot be undone."];
+	[alert setAlertStyle:NSWarningAlertStyle];
+	[alert beginSheetModalForWindow:[self window] completionHandler:^(NSModalResponse response) {
+		if(response == 1000) {
+			NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+			NSMutableDictionary *overrides = [[NSMutableDictionary alloc] init];
+			if(!overrides) {
+				NSLog(@"ERROR: Could not load style overrides, default may not have been registered");
+				return;
+			}
+			[overrides addEntriesFromDictionary:[userDefaults dictionaryForKey:UD_STYLE_OVERRIDES]];
+			[overrides removeObjectForKey:[_themePopUp titleOfSelectedItem]];
+			[userDefaults setObject:overrides forKey:UD_STYLE_OVERRIDES];
+			NSInteger selectedRow = [_styleTable selectedRow];
+			[self populateStyles];
+			NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:selectedRow];
+			[_styleTable selectRowIndexes:indexSet byExtendingSelection:NO];
+		}
+	}];
+}
+
 #pragma mark Observer methods
 
 -(void)registerObservers {
@@ -89,31 +144,12 @@
 		return;
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	NSMutableDictionary *overrides = [[NSMutableDictionary alloc] init];
-	[overrides addEntriesFromDictionary:[userDefaults dictionaryForKey:UD_STYLE_OVERRIDES]];
 	if(!overrides) {
 		NSLog(@"ERROR: Could not load style overrides, default may not have been registered");
 		return;
 	}
-	CodeStyleElement *selectedElem = [[styler getStyles] objectAtIndex:[_styleTable selectedRow]];
-	NSString *theme = [[_themePopUp selectedItem] title];
-	NSString *language = [languageNames objectAtIndex:[_styleSetPopUp indexOfSelectedItem]];
-	NSString *styleId = [[NSNumber numberWithInt:selectedElem.styleId] stringValue];
-	
-	// Theme overrides
-	NSMutableDictionary *themeOverrides = [[NSMutableDictionary alloc] init];
-	[themeOverrides addEntriesFromDictionary:[overrides objectForKey:theme]];
-	[overrides setObject:themeOverrides forKey:theme];
-	
-	// Language overrides
-	NSMutableDictionary *languageOverrides = [[NSMutableDictionary alloc] init];
-	[languageOverrides addEntriesFromDictionary:[themeOverrides objectForKey:language]];
-	[themeOverrides setObject:languageOverrides forKey:language];
-	
-	// Style overrides
-	NSMutableDictionary *styleOverrides = [[NSMutableDictionary alloc] init];
-	[styleOverrides addEntriesFromDictionary:[languageOverrides objectForKey:styleId]];
-	[languageOverrides setObject:styleOverrides forKey:styleId];
-	
+	[overrides addEntriesFromDictionary:[userDefaults dictionaryForKey:UD_STYLE_OVERRIDES]];
+	NSMutableDictionary *styleOverrides = [self mutableStyleDictionaryForOverrideDictionary:overrides];
 	if ([keyPath isEqualToString:@"foregroundColor"]) {
 		NSData *colorData = [NSArchiver archivedDataWithRootObject:_foregroundColor];
 		[styleOverrides setObject:colorData forKey:keyPath];
@@ -254,6 +290,49 @@
 	[self setFontName:fontName];
 
 	tableItemSelected = YES;
+}
+
+#pragma mark Misc
+
+-(NSMutableDictionary*)mutableStyleDictionaryForOverrideDictionary:(NSMutableDictionary*)overrides {
+	CodeStyleElement *selectedElem = [[styler getStyles] objectAtIndex:[_styleTable selectedRow]];
+	NSString *theme = [[_themePopUp selectedItem] title];
+	NSString *language = [languageNames objectAtIndex:[_styleSetPopUp indexOfSelectedItem]];
+	NSString *styleId = [[NSNumber numberWithInt:selectedElem.styleId] stringValue];
+	
+	// Theme overrides
+	NSMutableDictionary *themeOverrides = [[NSMutableDictionary alloc] init];
+	[themeOverrides addEntriesFromDictionary:[overrides objectForKey:theme]];
+	[overrides setObject:themeOverrides forKey:theme];
+	
+	// Language overrides
+	NSMutableDictionary *languageOverrides = [[NSMutableDictionary alloc] init];
+	[languageOverrides addEntriesFromDictionary:[themeOverrides objectForKey:language]];
+	[themeOverrides setObject:languageOverrides forKey:language];
+	
+	// Style overrides
+	NSMutableDictionary *styleOverrides = [[NSMutableDictionary alloc] init];
+	[styleOverrides addEntriesFromDictionary:[languageOverrides objectForKey:styleId]];
+	[languageOverrides setObject:styleOverrides forKey:styleId];
+	
+	return styleOverrides;
+}
+
+-(NSMutableDictionary*)mutableLanguageDictionaryForOverrideDictionary:(NSMutableDictionary*)overrides {
+	NSString *theme = [[_themePopUp selectedItem] title];
+	NSString *language = [languageNames objectAtIndex:[_styleSetPopUp indexOfSelectedItem]];
+	
+	// Theme overrides
+	NSMutableDictionary *themeOverrides = [[NSMutableDictionary alloc] init];
+	[themeOverrides addEntriesFromDictionary:[overrides objectForKey:theme]];
+	[overrides setObject:themeOverrides forKey:theme];
+	
+	// Language overrides
+	NSMutableDictionary *languageOverrides = [[NSMutableDictionary alloc] init];
+	[languageOverrides addEntriesFromDictionary:[themeOverrides objectForKey:language]];
+	[themeOverrides setObject:languageOverrides forKey:language];
+	
+	return languageOverrides;
 }
 
 @end
