@@ -58,7 +58,9 @@ static NSDictionary *keywords;
 					[sv setStatusText:statusText];
 				}
 				[self handleMatchingBraces];
-				[self handleWordMatches];
+                
+                // This causes null pointer references... must be a better way
+				// [self handleWordMatches];
 			}
 			break;
 		}
@@ -140,7 +142,7 @@ const char braces[] = {'(', ')', '[', ']', '{', '}'};
         [sv setGeneralProperty:SCI_SETKEYWORDS parameter:1 value:(sptr_t)tr.lpstrText];
     }
     else {
-        [sv setGeneralProperty:SCI_SETKEYWORDS parameter:1 value:(sptr_t)""];
+        [sv setStringProperty:SCI_SETKEYWORDS parameter:1 value:@""];
     }
     // Current word debugging
     if(DEBUG_CURRENT_WORD) {
