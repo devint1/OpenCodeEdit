@@ -52,33 +52,42 @@ static NSDictionary *defaultValues() {
 	NSString *fileUTI = (__bridge NSString*)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension, nil);
 	if(DEBUG_UTI)
 		NSLog(@"UTI: %@",fileUTI);
-	__block __strong CodeDocument *document = [self documentForURL:urlOrNil];
-	BOOL documentAlreadyOpen = document != nil;
+	__block __strong CodeDocument *oldDocument = [self documentForURL:urlOrNil];
+	BOOL documentAlreadyOpen = oldDocument != nil;
 	if ([CodeDocument canConcurrentlyReadDocumentsOfType:fileUTI]) {
 		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-			document = [self makeDocumentForURL:urlOrNil withContentsOfURL:contentsURL ofType:fileUTI error:nil];
+			CodeDocument *newDocument = [self makeDocumentForURL:urlOrNil withContentsOfURL:contentsURL ofType:fileUTI error:nil];
 			dispatch_sync(dispatch_get_main_queue(), ^{
-				[self finishOpenDocument:document documentAlreadyOpen:documentAlreadyOpen display:displayDocument url:urlOrNil completionHandler:completionHandler];
+				[self finishReopenDocument:oldDocument newDocument:newDocument documentAlreadyOpen:documentAlreadyOpen display:displayDocument url:urlOrNil completionHandler:completionHandler];
 			});
 		});
 	} else {
-		document = [self makeDocumentForURL:urlOrNil withContentsOfURL:contentsURL ofType:fileUTI error:nil];
-		[self finishOpenDocument:document documentAlreadyOpen:documentAlreadyOpen display:displayDocument url:urlOrNil completionHandler:completionHandler];
+		CodeDocument *newDocument = [self makeDocumentForURL:urlOrNil withContentsOfURL:contentsURL ofType:fileUTI error:nil];
+		[self finishReopenDocument:oldDocument newDocument:newDocument documentAlreadyOpen:documentAlreadyOpen display:displayDocument url:urlOrNil completionHandler:completionHandler];
+	}
+}
+
+-(void)finishReopenDocument:(CodeDocument*)oldDocument newDocument:(CodeDocument*)newDocument documentAlreadyOpen:(BOOL)documentOpen display:(BOOL)displayDocument url:(NSURL *)url completionHandler:(void (^)(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error))completionHandler {
+	if(documentOpen) {
+		int tabIndex = [browser indexOfTabContents:oldDocument];
+		[browser closeTabAtIndex:tabIndex makeHistory:NO];
+		[self removeDocument:oldDocument];
+		[self addDocument:newDocument];
+		[browser addTabContents:newDocument atIndex:tabIndex inForeground:YES];
+		[browser selectTabAtIndex:tabIndex];
+		completionHandler(newDocument, documentOpen, nil);
+	} else {
+		[self finishOpenDocument:newDocument documentAlreadyOpen:documentOpen display:displayDocument url:url completionHandler:completionHandler];
 	}
 }
 
 -(void)finishOpenDocument:(CodeDocument*)document documentAlreadyOpen:(BOOL)documentOpen display:(BOOL)displayDocument url:(NSURL *)url completionHandler:(void (^)(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error))completionHandler {
-	if(documentOpen) {
-		int tabIndex = [browser indexOfTabContents:document];
-		[browser selectTabAtIndex:tabIndex];
-	} else {
-		[self newBrowserWindow];
-		[document setDelegate:self];
-		[self addDocument:document];
-		[document addWindowController:browser.windowController];
-		[browser addTabContents:document];
-		completionHandler(document, documentOpen, nil);
-	}
+	[self newBrowserWindow];
+	[document setDelegate:self];
+	[self addDocument:document];
+	[document addWindowController:browser.windowController];
+	[browser addTabContents:document];
+	completionHandler(document, documentOpen, nil);
 }
 
 - (void)openDocumentWithContentsOfURL:(NSURL *)url display:(BOOL)displayDocument completionHandler:(void (^)(NSDocument *document, BOOL documentWasAlreadyOpen, NSError *error))completionHandler {
